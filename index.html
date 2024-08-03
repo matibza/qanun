@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>QanunFM</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script type="text/javascript" src="java.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div class="container">
+   <div class="player">
+     <div class="player__controls">    
+       <h5 class="player__title">Qanun FM</h5>
+     </div>
+     <div class="player__album">
+       <img src="https://matibza.github.io/matibza/qanun/k.png" alt="Album Cover" class=""/>
+     </div>
+
+     <h2 class="player__artist">FM 100.3Mhz</h2>
+     <h3 class="player__song">Chivilcoy</h3>
+
+     <input type="range" value="20" min="0" class="player__level" id="range" />
+     <div class="audio-duration">
+       <div class="start">00:01</div>
+       <div class="end">04:30</div>
+     </div>
+
+     <audio class="player__audio" controls id="audio">
+       <source src="https://radio01.ferozo.com/proxy/ra01000985?mp=/stream" type="audio/mpeg" />
+     </audio>
+
+     <div class="player__controls">
+       <div class="player__btn player__btn--medium bebess" id="backward">
+         <span class="bebe">⫷</span>
+       </div>
+
+       <div class="player__btn player__btn--medium blue play bebess" id="play" onclick="banana()">
+         <span class="bebe-e" id="pl">▶</span>
+       </div>
+
+       <div class="player__btn player__btn--medium bebess" id="forward">
+         <span class="bebe">⫸</span>
+       </div>
+     </div>
+   </div>
+ </div>
+</body>
+</html>
