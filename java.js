@@ -1,13 +1,6 @@
 var contador = 0;
 
 
-function saludo() {
-  alert("Todavia estamos en construccion =), gracias por su paciencia.")
-}
-function mensaje() {
-  alert("En mantenimiento =)")
-}
-
 function banana() {
     contador++
 var audio = document.getElementById("audio");
