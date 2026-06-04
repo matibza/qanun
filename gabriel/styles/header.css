@@ -1,0 +1,138 @@
+#primary {
+    padding-block: 20px;
+
+    div {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    /* nesting css */
+    div:nth-child(2) {
+        margin-inline: auto;
+    }
+
+    div:nth-child(3) {
+        justify-self: end;
+    }
+}
+
+#secundary {
+    padding-block: 14px;
+    border: solid 1px var(--stroke-color);
+    border-inline: none;
+    justify-content: space-between;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    #primary {
+        padding-block: 16px;
+        
+        div strong {
+            font-size: 14px;
+        }
+        
+        div img {
+            width: 20px;
+            height: 20px;
+        }
+    }
+    
+    #secundary {
+        overflow-x: auto;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+        padding-block: 12px;
+        gap: 16px;
+        
+        &::-webkit-scrollbar {
+            height: 4px;
+        }
+        
+        &::-webkit-scrollbar-track {
+            background: var(--stroke-color);
+            border-radius: 4px;
+        }
+        
+        &::-webkit-scrollbar-thumb {
+            background: var(--brand-color-light);
+            border-radius: 4px;
+        }
+        
+        a {
+            font-size: 14px;
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    #primary {
+        padding-block: 12px;
+        
+        div strong {
+            font-size: 12px;
+        }
+        
+        div img {
+            width: 18px;
+            height: 18px;
+        }
+    }
+    
+    #secundary {
+        padding-block: 10px;
+        gap: 12px;
+        
+        a {
+            font-size: 12px;
+        }
+    }
+}/* En tu archivo header.css o global.css */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 9999; /* Valor muy alto para estar siempre al frente */
+    background-color: var(--bg-color);
+    
+    /* Opcional: sombra para dar sensación de profundidad */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    
+    /* Asegurar que el header sea un contexto de apilamiento */
+    isolation: isolate;
+}
+
+/* También asegurar que los elementos dentro del header tengan z-index adecuado */
+header * {
+    z-index: 1;
+    position: relative; /* Para que respeten el z-index */
+}
+
+/* Prevenir que otros elementos se superpongan */
+main, 
+aside, 
+section, 
+article,
+.grid,
+.card {
+    position: relative;
+    z-index: 1; /* Menor que el header */
+}
+
+/* Especialmente importante para elementos con posicionamiento */
+.card::before,
+.card figcaption,
+.content-tag {
+    z-index: 2; /* Que sean menores que el header (9999) */
+}
+
+/* Si tienes modales, popups o menús desplegables, deben tener menor z-index */
+.modal,
+.popup,
+.dropdown {
+    z-index: 9998; /* Justo debajo del header si deben verse encima */
+}
+.logo {
+    font-size: 2.5rem;
+    }
