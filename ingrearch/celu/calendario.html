@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IngreAr - Calendario Mensual de Turnos</title>
+	<link rel="stylesheet" href="../styles/styles.css">
+	<link rel="stylesheet" href="../styles/styles_calendario.css">
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo">IngreAr</div>
+            <a href="index3.html" class="btn-volver">&#8592; Volver al Panel</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="seccion-encabezado">
+            <h2>Recorrido Mensual de Esquemas</h2>
+            <p style="color: #666; font-size: 0.95rem;">Rotación de Bloques Operativos 24/7</p>
+        </div>
+
+        <section>
+            <div class="acciones-barra">
+                <div class="mes-control">
+                    <button class="btn-flecha">&lt;</button>
+                    <span>MAYO 2026</span>
+                    <button class="btn-flecha">&gt;</button>
+                </div>
+                <span style="font-size: 0.85rem; color: #666;">Horarios fijos de 8 hs por cuadrilla</span>
+            </div>
+
+            <div class="tabla-contenedor">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="text-align: left; padding-left: 1rem;">Día / Fecha</th>
+                            <th>Turno A</th>
+                            <th>Turno B</th>
+                            <th>Turno C</th>
+                            <th>Turno D</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Calendario Completo de 31 días (Mayo 2026) -->
+                       
+<div class="calendario-container">
+
+    <!-- Tabla calendario rectangular: 7 columnas (días de semana) y filas necesarias para 31 celdas.
+         Organización: Lunes a Domingo (como calendario tradicional)
+         Para cubrir exactamente 31 días comenzamos desde el día 1 en la posición que corresponda según marzo 2026.
+         Marzo 2026 comienza en DOMINGO. Para que quede completamente rectangular y mostrar todas las celdas de forma
+         ordenada, haremos que la primera fila tenga desde día 1 (domingo) y completamos hasta el sábado siguiente.
+         Al final, necesitaremos 5 filas completas (7x5 = 35 celdas) pero sólo mostraremos 31 números; 
+         las celdas vacías (sin número) se mantienen en blanco para respetar forma rectangular. El diseño de la tabla
+         será completamente simétrico. -->
+    <table class="calendario-tabla" role="grid">
+        <thead>
+            <tr>
+                <th>LUNES</th>
+                <th>MARTES</th>
+                <th>MIÉRCOLES</th>
+                <th>JUEVES</th>
+                <th>VIERNES</th>
+                <th>SÁBADO</th>
+                <th>DOMINGO</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- 
+                Marzo 2026: el primer día es domingo 1.
+                Distribución real:
+                - Semana 1: Domingo 1, luego lunes 2, martes 3, miércoles 4, jueves 5, viernes 6, sábado 7.
+                - Semana 2: Domingo 8, lunes 9, martes 10, miércoles 11, jueves 12, viernes 13, sábado 14.
+                - Semana 3: Domingo 15, lunes 16, martes 17, miércoles 18, jueves 19, viernes 20, sábado 21.
+                - Semana 4: Domingo 22, lunes 23, martes 24, miércoles 25, jueves 26, viernes 27, sábado 28.
+                - Semana 5: Domingo 29, lunes 30, martes 31, miércoles (vacío), jueves (vacío), viernes (vacío), sábado (vacío).
+                
+                Para lograr exactamente 31 números dentro de las celdas, mantendremos la estructura rectangular de 7x5.
+                Las celdas sin día se dejan vacías o con un espacio, pero la cuadrícula permanece sólida.
+                Además agregaremos clase 'sabado' o 'domingo' para aplicar color de fondo según paleta original.
+            -->
+            <!-- FILA 1: del día 1 al 7 (pero atención: domingo 1 empieza en la última columna). 
+                 En la tabla el orden de columnas es LUNES, MARTES, MIÉR, JUEVES, VIERNES, SÁBADO, DOMINGO. -->
+            <tr>
+                <!-- Lunes 2 -->
+                <td class="lunes"><div class="numero-dia">2</div></td>
+                <!-- Martes 3 -->
+                <td><div class="numero-dia">3</div></td>
+                <!-- Miércoles 4 -->
+                <td><div class="numero-dia">4</div></td>
+                <!-- Jueves 5 -->
+                <td><div class="numero-dia">5</div></td>
+                <!-- Viernes 6 -->
+                <td><div class="numero-dia">6</div></td>
+                <!-- Sábado 7 (sabado) -->
+                <td class="sabado"><div class="numero-dia">7</div></td>
+                <!-- Domingo 1 (domingo) -->
+                <td class="domingo"><div class="numero-dia">1</div></td>
+            </tr>
+            <!-- FILA 2: días 8 al 14 -->
+            <tr>
+                <td><div class="numero-dia">9</div></td>   <!-- Lunes 9 -->
+                <td><div class="numero-dia">10</div></td>  <!-- Martes 10 -->
+                <td><div class="numero-dia">11</div></td>  <!-- Miércoles 11 -->
+                <td><div class="numero-dia">12</div></td>  <!-- Jueves 12 -->
+                <td><div class="numero-dia">13</div></td>  <!-- Viernes 13 -->
+                <td class="sabado"><div class="numero-dia">14</div></td> <!-- Sábado 14 -->
+                <td class="domingo"><div class="numero-dia">8</div></td>  <!-- Domingo 8 -->
+            </tr>
+            <!-- FILA 3: días 15 al 21 -->
+            <tr>
+                <td><div class="numero-dia">16</div></td>  <!-- Lunes 16 -->
+                <td><div class="numero-dia">17</div></td>  <!-- Martes 17 -->
+                <td><div class="numero-dia">18</div></td>  <!-- Miércoles 18 -->
+                <td><div class="numero-dia">19</div></td>  <!-- Jueves 19 -->
+                <td><div class="numero-dia">20</div></td>  <!-- Viernes 20 -->
+                <td class="sabado"><div class="numero-dia">21</div></td> <!-- Sábado 21 -->
+                <td class="domingo"><div class="numero-dia">15</div></td> <!-- Domingo 15 -->
+            </tr>
+            <!-- FILA 4: días 22 al 28 -->
+            <tr>
+                <td><div class="numero-dia">23</div></td>  <!-- Lunes 23 -->
+                <td><div class="numero-dia">24</div></td>  <!-- Martes 24 -->
+                <td><div class="numero-dia">25</div></td>  <!-- Miércoles 25 -->
+                <td><div class="numero-dia">26</div></td>  <!-- Jueves 26 -->
+                <td><div class="numero-dia">27</div></td>  <!-- Viernes 27 -->
+                <td class="sabado"><div class="numero-dia">28</div></td> <!-- Sábado 28 -->
+                <td class="domingo"><div class="numero-dia">22</div></td> <!-- Domingo 22 -->
+            </tr>
+            <!-- FILA 5: días 29,30,31 + celdas vacías (sin número) para mantener rectangularidad -->
+            <tr>
+                <td><div class="numero-dia">30</div></td>  <!-- Lunes 30 -->
+                <td><div class="numero-dia">31</div></td>  <!-- Martes 31 -->
+                <td><!-- Miércoles vacío (sin número, espacio en blanco) --></td>
+                <td><!-- Jueves vacío --></td>
+                <td><!-- Viernes vacío --></td>
+                <td class="sabado"><!-- Sábado vacío, solo fondo de finde pero sin número --></td>
+                <td class="domingo"><div class="numero-dia">29</div></td>  <!-- Domingo 29 -->
+            </tr>
+        </tbody>
+    </table>
+</div>
+<br>
+<a href="vacaciones.html"><button class="btn-flecha">Solicitar vacaciones</button></a>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 IngreAr Logística S.A. - Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

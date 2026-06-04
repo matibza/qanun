@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IngreAr - Administración de Vacaciones</title>
+	<link rel="stylesheet" href="../styles/styles.css">
+</head>
+<body>
+
+    <!-- Encabezado -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">IngreAr</div>
+            <a href="index3.html" class="btn-volver">&#8592; Volver al Panel</a>
+        </div>
+    </header>
+
+    <!-- Contenedor Principal -->
+    <main>
+        
+        <div class="seccion-encabezado">
+            <h2>Administración de Vacaciones y Licencias</h2>
+            <p style="color: #666; font-size: 0.95rem;">Planificación y Aprobación de Períodos de Descanso</p>
+        </div>
+
+        <!-- Layout Dividido -->
+        <div class="contenido-layout">
+            
+            <!-- Columna Izquierda: Formulario de Solicitud -->
+            <aside class="panel-formulario">
+                <h3>Registrar Solicitud</h3>
+                <form onsubmit="return false;">
+                    <div class="form-group">
+                        <label for="legajo">Operario (Legajo)</label>
+                        <select id="legajo">
+                            <option value="">Seleccione un operario...</option>
+                            <option value="101">Carlos Mendoza (LEG-101)</option>
+                            <option value="102">Martín Gómez (LEG-102)</option>
+                            <option value="104">Lucas Fernández (LEG-104)</option>
+                            <option value="105">Gonzalo Maidana (LEG-105)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="inicio-vac">Fecha de Inicio</label>
+                        <input type="date" id="inicio-vac">
+                    </div>
+                    <div class="form-group">
+                        <label for="dias">Días Solicitados</label>
+                        <input type="number" id="dias" min="1" max="35" placeholder="Ej: 14">
+                    </div>
+                    <div class="form-group">
+                        <label for="tipo">Tipo de Licencia</label>
+                        <select id="tipo">
+                            <option value="ordinaria">Vacaciones Anuales</option>
+                            <option value="examen">Licencia por Examen</option>
+                            <option value="medica">Licencia Médica</option>
+                        </select>
+                    </div>
+                    <button class="btn-submit" type="button">Enviar Solicitud</button>
+                </form>
+            </aside>
+
+            <!-- Columna Derecha: Historial y Estado de Solicitudes -->
+            <section class="panel-tabla">
+                <div class="tabla-cabecera-filtro">
+                    <h3>Cronograma y Estados del Período Actual</h3>
+                </div>
+                
+                <div class="tabla-contenedor">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Legajo</th>
+                                <th>Operario</th>
+                                <th>Desde</th>
+                                <th>Hasta</th>
+                                <th>Días</th>
+                                <th>Tipo</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>LEG-104</strong></td>
+                                <td>Lucas Fernández</td>
+                                <td>01/06/2026</td>
+                                <td>15/06/2026</td>
+                                <td>14</td>
+                                <td>Ordinaria</td>
+                                <td><span class="badge pendiente">Pendiente</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>LEG-108</strong></td>
+                                <td>Nicolás Peralta</td>
+                                <td>15/06/2026</td>
+                                <td>22/06/2026</td>
+                                <td>7</td>
+                                <td>Ordinaria</td>
+                                <td><span class="badge pendiente">Pendiente</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>LEG-101</strong></td>
+                                <td>Carlos Mendoza</td>
+                                <td>10/05/2026</td>
+                                <td>24/05/2026</td>
+                                <td>14</td>
+                                <td>Ordinaria</td>
+                                <td><span class="badge aprobado">Aprobado</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>LEG-115</strong></td>
+                                <td>Mariano Acosta</td>
+                                <td>02/05/2026</td>
+                                <td>05/05/2026</td>
+                                <td>3</td>
+                                <td>Examen</td>
+                                <td><span class="badge aprobado">Aprobado</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>LEG-119</strong></td>
+                                <td>Sergio Castro</td>
+                                <td>20/04/2026</td>
+                                <td>04/05/2026</td>
+                                <td>14</td>
+                                <td>Médica</td>
+                                <td><span class="badge aprobado">Aprobado</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>LEG-103</strong></td>
+                                <td>Juan P. Rodríguez</td>
+                                <td>01/04/2026</td>
+                                <td>21/04/2026</td>
+                                <td>21</td>
+                                <td>Ordinaria</td>
+                                <td><span class="badge aprobado">Aprobado</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>LEG-112</strong></td>
+                                <td>Daniel Giménez</td>
+                                <td>15/03/2026</td>
+                                <td>22/03/2026</td>
+                                <td>7</td>
+                                <td>Ordinaria</td>
+                                <td><span class="badge rechazado">Rechazado</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Pie de página -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 IngreAr S.R.L. - Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

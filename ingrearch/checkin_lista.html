@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IngreAr - Control de Stock</title>
+	<link rel="stylesheet" href="styles/styles.css">
+	
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo">IngreAr</div>
+            <a href="index2.html" class="btn-volver">&#8592; Volver al Panel</a>
+        </div>
+    </header>
+
+    <main>
+        
+        <div class="seccion-encabezado">
+            <h2>Control de autoelevadores</h2>
+        </div>
+
+        <section class="resumen-stock">
+            <div class="kpi-card">
+                <p>Operativos</p>
+                <div class="numero">5</div>
+            </div>
+            <div class="kpi-card">
+                <p>Inactivos</p>
+                <div class="numero">2</div>
+            </div>
+            <div class="kpi-card alerta">
+                <p>En mantenimiento</p>
+                <div class="numero">1</div>
+            </div>
+            <div class="kpi-card">
+                <p>Combustible</p>
+                <div class="numero">80%</div>
+            </div>
+
+        </section>
+
+        <section>
+            <div class="acciones-barra">
+                <input type="text" class="buscador" placeholder="Buscar por código, artículo o pasillo...">
+                <a href="checkin.html"><button class="btn-accion">+ Registrar Movimiento</button></a>
+            </div>
+
+            <div class="tabla-contenedor">
+                <table class="tabla-editable">
+            <thead>
+                <tr onclick="blanqueo()">
+                    <th>📅 FECHA</th>
+                    <th>⏰ TURNO</th>
+                    <th>👤 OPERADOR</th>
+                    <th>🛠️ EQUIPO</th>
+                    <th>📊 ESTADO</th>
+                </tr>
+            </thead>
+           <tbody>
+                <!-- Fila 1 -->
+                <tr onclick="blanqueo(), fila()">
+                    <td id="a1"><span>2026-05-28</span></td>
+                    <td id="a2"><span>Mañana (06-14)</span></td>
+                    <td id="a3"><span>Luis Fernández</span></td>
+                    <td id="a4"><span>Autoelevador TR-101"</span></td>
+                    <td id="a5"><span>Operativo</span></td>    
+                </tr>
+                <!-- Fila 2 -->
+                <tr onclick="blanqueo(), fila2()">
+                    <td id="a6">celda-input></td>
+                    <td id="a7">celda-input></td>
+                    <td id="a8">celda-input></td>
+                    <td id="a9">celda-input></td>
+                    <td id="a10">celda-input></td>
+                </tr>
+                <!-- Fila 3 -->
+                <tr onclick="blanqueo(), fila3()">
+                    <td id="a11">2026-05-29</td>
+                    <td id="a12">Noche (22-06)</td>
+                    <td id="a13">Carlos Ruiz</td>
+                    <td id="a14">Apilador AP-500</td>
+                    <td id="a15">Operativo</td>
+                </tr>
+                <!-- Fila 4 -->
+                <tr onclick="blanqueo(), fila4()">
+                    <td id="a16">2026-05-29</td>
+                    <td id="a17">Mañana (06-14)</td>
+                    <td id="a18">Camila Torres</td>
+                    <td id="a19">Zorra Hidráulica Z-9</td>
+                    <td id="a20">Revisión</td>
+                </tr>
+                <!-- Fila 5 -->
+                <tr onclick="blanqueo(), fila5()">
+                    <td id="a21">2026-05-30</td>
+                    <td id="a22">Tarde (14-22)</td>
+                    <td id="a23">Javier Mendoza</td>
+                    <td id="a24">Autoelevador TR-102</td>
+                    <td id="a25">Inactivo></td>
+                </tr>
+
+            </tbody>
+        </table>
+            </div>
+            <br>
+            <a href="checkin_planilla.html"><button class="btn-accion">Ver seleccion</button></a>
+            <a href="https://www.qanunfm.com.ar"><button class="btn-accion">Ver lista completa</button></a>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 IngreAr S.R.L. - Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+<script src="checkin_lista.js"></script>
+</body>
+</html>

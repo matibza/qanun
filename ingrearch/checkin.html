@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>IngreAr Logistics | Checklist de Autoelevadores</title>
+    <!-- Font Awesome para iconos (opcional pero mejora la estética) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Estilos globales unificados de IngreAr -->
+    <link rel="stylesheet" href="styles/styles.css">
+    <style>
+        /* Estilos adicionales específicos para el checklist 
+           (NO se modifica styles.css, solo se agregan los necesarios para el formulario) */
+        
+        /* Contenedor principal del checklist */
+        .checklist-container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+        
+        /* Título principal con estilo IngreAr */
+        .checklist-titulo {
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .checklist-titulo h1 {
+            font-size: 2rem;
+            color: var(--color-principal);
+            background: linear-gradient(135deg, var(--color-principal), var(--color-autoelevadores));
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+        
+        .checklist-titulo::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--color-autoelevadores);
+            margin: 0.5rem auto 0 auto;
+            border-radius: 2px;
+        }
+        
+        /* Tabla de checklist rediseñada */
+        .checklist-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            margin-bottom: 1.5rem;
+        }
+        
+        .checklist-table th,
+        .checklist-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .checklist-table th {
+            background-color: var(--color-principal);
+            color: var(--color-texto);
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        
+        .checklist-table tr:hover td {
+            background-color: #f8fafc;
+        }
+        
+        /* Selector de equipo */
+        .equipo-selector {
+            background-color: var(--color-autoelevadores);
+            color: white;
+            font-weight: 600;
+        }
+        
+        .equipo-selector select {
+            background-color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: normal;
+            cursor: pointer;
+            margin-left: 1rem;
+        }
+        
+        /* Botones ES OK / NO OK */
+        .btn-check {
+            display: flex;
+            gap: 0.75rem;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .btn-ok, .btn-no {
+            padding: 0.6rem 1.2rem;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            min-width: 90px;
+        }
+        
+        .btn-ok {
+            background-color: #2e7d32;
+            color: white;
+            opacity: 1;
+        }
+        
+        .btn-ok:hover {
+            background-color: #1b5e20;
+            transform: translateY(-1px);
+        }
+        
+        .btn-no {
+            background-color: #c62828;
+            color: white;
+            opacity: 0.4;
+        }
+        
+        .btn-no:hover {
+            opacity: 0.7;
+            transform: translateY(-1px);
+        }
+        
+        /* Textarea observaciones */
+        .observaciones-area {
+            width: 100%;
+            margin-bottom: 1.5rem;
+        }
+        
+        .observaciones-area label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--color-principal);
+        }
+        
+        .observaciones-area textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-family: var(--fuente);
+            font-size: 0.9rem;
+            resize: vertical;
+            transition: box-shadow 0.2s ease;
+        }
+        
+        .observaciones-area textarea:focus {
+            outline: none;
+            border-color: var(--color-autoelevadores);
+            box-shadow: 0 0 0 3px rgba(245, 124, 0, 0.2);
+        }
+        
+        /* Botones de acción */
+        .acciones-botones {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 1.5rem 0;
+        }
+        
+        .btn-enviar, .btn-version {
+            padding: 0.75rem 1.8rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .btn-enviar {
+            background-color: var(--color-autoelevadores);
+            color: white;
+        }
+        
+        .btn-enviar:hover {
+            background-color: #e65100;
+            transform: translateY(-2px);
+        }
+        
+        .btn-version {
+            background-color: var(--color-principal);
+            color: white;
+        }
+        
+        .btn-version:hover {
+            background-color: var(--color-secundario);
+            transform: translateY(-2px);
+        }
+        
+        /* Info del operario (simulada) */
+        .info-operario {
+            background-color: #f1f5f9;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            font-size: 0.85rem;
+            color: #475569;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        /* Campo oculto para el link de WhatsApp */
+        .hidden-link {
+            display: none;
+        }
+        
+        /* Footer personalizado */
+        .checklist-footer {
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+            font-size: 0.75rem;
+            color: #6c7e91;
+            border-top: 1px solid #e2edf7;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .checklist-container {
+                padding: 0 1rem;
+            }
+            
+            .btn-check {
+                flex-direction: column;
+            }
+            
+            .btn-ok, .btn-no {
+                width: 100%;
+            }
+            
+            .equipo-selector select {
+                margin-left: 0;
+                margin-top: 0.5rem;
+                width: 100%;
+            }
+            
+            .equipo-selector {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+	    <!-- Encabezado -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">IngreAr</div>
+            <a href="index2.html" class="btn-volver">&#8592; Volver al Panel</a>
+        </div>
+    </header>
+    <main>
+        <div class="checklist-container">
+            <!-- Título -->
+            <div class="checklist-titulo">
+                <h1><i class="fas fa-clipboard-check"></i> Control Diario de Autoelevadores</h1>
+            </div>
+
+            <!-- Tabla principal de checklist -->
+            <table class="checklist-table">
+                <thead>
+                    <tr>
+                        <th colspan="2">
+                            <div class="equipo-selector" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                                <span><i class="fas fa-forklift"></i> AUTOELEVADOR:</span>
+                                <select id="equipo" style="padding: 0.5rem 1rem; border-radius: 6px; background: white; color: #333;">
+                                    <option value="1">Equipo #1</option>
+                                    <option value="2">Equipo #2</option>
+                                    <option value="5">Equipo #5</option>
+                                    <option value="17">Equipo #17</option>
+                                    <option value="18">Equipo #18</option>
+                                    <option value="20">Equipo #20</option>
+                                    <option value="23">Equipo #23</option>
+                                </select>
+                            </div>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th style="width: 50%;">Ítem a verificar</th>
+                        <th style="width: 50%;">Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><i class="fas fa-oil-can"></i> Líquidos hidráulicos</td>
+                        <td>
+                            <div class="btn-check">
+                                <button id="o1" class="btn-ok" onclick="ES_OK(1)"><i class="fas fa-check"></i> ES OK</button>
+                                <button id="n1" class="btn-no" onclick="NO_OK(1)"><i class="fas fa-times"></i> NO OK</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><i class="fas fa-car"></i> Frenos</td>
+                        <td>
+                            <div class="btn-check">
+                                <button id="o2" class="btn-ok" onclick="ES_OK(2)"><i class="fas fa-check"></i> ES OK</button>
+                                <button id="n2" class="btn-no" onclick="NO_OK(2)"><i class="fas fa-times"></i> NO OK</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><i class="fas fa-lightbulb"></i> Baliza fija</td>
+                        <td>
+                            <div class="btn-check">
+                                <button id="o3" class="btn-ok" onclick="ES_OK(3)"><i class="fas fa-check"></i> ES OK</button>
+                                <button id="n3" class="btn-no" onclick="NO_OK(3)"><i class="fas fa-times"></i> NO OK</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><i class="fas fa-car-side"></i> Luces</td>
+                        <td>
+                            <div class="btn-check">
+                                <button id="o4" class="btn-ok" onclick="ES_OK(4)"><i class="fas fa-check"></i> ES OK</button>
+                                <button id="n4" class="btn-no" onclick="NO_OK(4)"><i class="fas fa-times"></i> NO OK</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><i class="fas fa-volume-up"></i> Alarma retroceso</td>
+                        <td>
+                            <div class="btn-check">
+                                <button id="o5" class="btn-ok" onclick="ES_OK(5)"><i class="fas fa-check"></i> ES OK</button>
+                                <button id="n5" class="btn-no" onclick="NO_OK(5)"><i class="fas fa-times"></i> NO OK</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><i class="fas fa-tire"></i> Cubiertas</td>
+                        <td>
+                            <div class="btn-check">
+                                <button id="o6" class="btn-ok" onclick="ES_OK(6)"><i class="fas fa-check"></i> ES OK</button>
+                                <button id="n6" class="btn-no" onclick="NO_OK(6)"><i class="fas fa-times"></i> NO OK</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><i class="fas fa-user-lock"></i> Cinturón seguridad</td>
+                        <td>
+                            <div class="btn-check">
+                                <button id="o7" class="btn-ok" onclick="ES_OK(7)"><i class="fas fa-check"></i> ES OK</button>
+                                <button id="n7" class="btn-no" onclick="NO_OK(7)"><i class="fas fa-times"></i> NO OK</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><i class="fas fa-fire-extinguisher"></i> Matafuegos</td>
+                        <td>
+                            <div class="btn-check">
+                                <button id="o8" class="btn-ok" onclick="ES_OK(8)"><i class="fas fa-check"></i> ES OK</button>
+                                <button id="n8" class="btn-no" onclick="NO_OK(8)"><i class="fas fa-times"></i> NO OK</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Información del operario (simulada) -->
+            <div class="info-operario">
+                <span><i class="fas fa-user"></i> Operario: Matias Barraza</span>
+                <span><i class="fas fa-id-card"></i> Legajo/DNI: 37.XXX.XXX</span>
+                <span><i class="fas fa-calendar"></i> Fecha: <span id="fechaActual"></span></span>
+            </div>
+
+            <!-- Observaciones -->
+            <div class="observaciones-area">
+                <label><i class="fas fa-comment"></i> Observaciones:</label>
+                <textarea id="observaciones" rows="4" placeholder="Escriba aquí cualquier observación adicional sobre el estado del equipo..."></textarea>
+            </div>
+
+            <!-- Botones de acción -->
+            <div class="acciones-botones">
+                <button class="btn-enviar" onclick="enviar()"><i class="fab fa-whatsapp"></i> Enviar por WhatsApp</button>
+                <button class="btn-version" onclick="window.location.href='../checklist/checklist2.html'"><i class="fas fa-code-branch"></i> Versión 2.0</button>
+            </div>
+
+            <!-- Campo oculto para el link generado -->
+            <input id="LK" type="text" class="hidden-link" value="https://api.whatsapp.com/send?text=CONTROL%20DIARIO%20DE%20AUTOELEVADORES">
+
+            <!-- Footer -->
+            <div class="checklist-footer">
+                <marquee><i class="fas fa-sync-alt"></i> Aplicación check-list de autoelevadores. Última actualización: 18/04/2024. <i class="fas fa-forklift"></i> IngreAr</marquee>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer global de IngreAr (opcional, mantiene coherencia) -->
+    <footer>
+        <p>&copy; 2024 IngreAr Logistics - Sistema de Control de Flota | Checklist de Autoelevadores</p>
+    </footer>
+
+    <script type="text/javascript">
+        // Estados de los botones (0 = OK seleccionado, 1 = NO OK seleccionado)
+        let estados = {
+            1: { ok: 1, no: 0, resultado: 'ES OK' },
+            2: { ok: 1, no: 0, resultado: 'ES OK' },
+            3: { ok: 1, no: 0, resultado: 'ES OK' },
+            4: { ok: 1, no: 0, resultado: 'ES OK' },
+            5: { ok: 1, no: 0, resultado: 'ES OK' },
+            6: { ok: 1, no: 0, resultado: 'ES OK' },
+            7: { ok: 1, no: 0, resultado: 'ES OK' },
+            8: { ok: 1, no: 0, resultado: 'ES OK' }
+        };
+
+        // Función ES_OK unificada
+        function ES_OK(num) {
+            let estado = estados[num];
+            let btnOk = document.getElementById('o' + num);
+            let btnNo = document.getElementById('n' + num);
+            
+            if (estado.ok == 0) {
+                // Actualmente NO OK, cambiamos a OK
+                btnOk.style.opacity = "1";
+                btnNo.style.opacity = "0.4";
+                estado.ok = 1;
+                estado.no = 0;
+                estado.resultado = 'ES OK';
+            } else if (estado.ok == 1) {
+                // Actualmente OK, cambiamos a NO OK
+                btnOk.style.opacity = "0.4";
+                btnNo.style.opacity = "1";
+                estado.ok = 0;
+                estado.no = 1;
+                estado.resultado = 'NO OK';
+            }
+        }
+
+        // Función NO_OK unificada
+        function NO_OK(num) {
+            let estado = estados[num];
+            let btnOk = document.getElementById('o' + num);
+            let btnNo = document.getElementById('n' + num);
+            
+            if (estado.no == 0) {
+                // Actualmente OK, cambiamos a NO OK
+                btnOk.style.opacity = "0.4";
+                btnNo.style.opacity = "1";
+                estado.ok = 0;
+                estado.no = 1;
+                estado.resultado = 'NO OK';
+            } else if (estado.no == 1) {
+                // Actualmente NO OK, cambiamos a OK
+                btnOk.style.opacity = "1";
+                btnNo.style.opacity = "0.4";
+                estado.ok = 1;
+                estado.no = 0;
+                estado.resultado = 'ES OK';
+            }
+        }
+
+        // Función para obtener la fecha actual formateada
+        function getFechaActual() {
+            const hoy = new Date();
+            const dia = String(hoy.getDate()).padStart(2, '0');
+            const mes = String(hoy.getMonth() + 1).padStart(2, '0');
+            const año = hoy.getFullYear();
+            return `${dia}/${mes}/${año}`;
+        }
+
+        // Función para enviar el reporte por WhatsApp
+        function enviar() {
+            const equipo = document.getElementById("equipo").value;
+            const fecha = getFechaActual();
+            const observaciones = document.getElementById("observaciones").value || "Sin observaciones";
+            const operario = 'Matias Barraza';
+            const legajo = '37.XXX.XXX';
+            
+            // Construir mensaje
+            const mensaje = `CONTROL DIARIO DE AUTOELEVADORES, SECTOR QUE ARCHIVA: HSMA%0A` +
+                `*EQUIPO:* ${equipo}%0A` +
+                `*Fecha:* ${fecha}%0A` +
+                `*Líquidos hidráulicos:* ${estados[1].resultado}%0A` +
+                `*Frenos:* ${estados[2].resultado}%0A` +
+                `*Baliza fija:* ${estados[3].resultado}%0A` +
+                `*Luces:* ${estados[4].resultado}%0A` +
+                `*Alarma retroceso:* ${estados[5].resultado}%0A` +
+                `*Cubiertas:* ${estados[6].resultado}%0A` +
+                `*Cinturón seguridad:* ${estados[7].resultado}%0A` +
+                `*Matafuegos:* ${estados[8].resultado}%0A` +
+                `*Operario:* ${operario}%0A` +
+                `*Legajo/DNI:* ${legajo}%0A` +
+                `*Observaciones:* ${observaciones}%0A` +
+                `&phone=542346304109`;
+            
+            const linkCompleto = "https://api.whatsapp.com/send?text=" + mensaje;
+            
+            // Abrir WhatsApp
+            window.open(linkCompleto, '_blank');
+        }
+
+        // Mostrar fecha actual al cargar la página
+        document.addEventListener('DOMContentLoaded', function() {
+            const fechaSpan = document.getElementById('fechaActual');
+            if (fechaSpan) {
+                fechaSpan.textContent = getFechaActual();
+            }
+        });
+    </script>
+</body>
+</html>

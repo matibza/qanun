@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Folleto Sistema de Depósito (Stock) | 20x30 cm</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #e2e8f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            padding: 24px;
+        }
+
+        /* FOLLETO PRINCIPAL: 20cm x 30cm (apaisado = width 30cm, height 20cm) */
+        .folleto {
+            width: 30cm;
+            height: 20cm;
+            background: white;
+            box-shadow: 0 25px 40px -12px rgba(0,0,0,0.35);
+            border-radius: 12px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            position: relative;
+            transition: all 0.2s;
+            scroll-behavior: smooth;
+        }
+
+        /* Personalizamos scroll para que se vea limpio */
+        .folleto::-webkit-scrollbar {
+            width: 6px;
+            background: #f1f1f1;
+        }
+        .folleto::-webkit-scrollbar-thumb {
+            background: #2c7da0;
+            border-radius: 8px;
+        }
+
+        /* CONTENEDOR INTERNO CON PADDING GENERAL */
+        .contenido-folleto {
+            padding: 1.8rem 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+        }
+
+        /* TARJETAS / BLOQUES */
+        .seccion {
+            background: #ffffff;
+            border-left: 5px solid #0f4c5f;
+            border-radius: 20px;
+            padding: 1rem 1.5rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03), 0 1px 2px rgba(0,0,0,0.05);
+            transition: 0.2s;
+        }
+
+        .seccion:hover {
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+
+        .titulo-seccion {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #0f4c5f;
+            border-bottom: 2px solid #cbd5e1;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            letter-spacing: -0.3px;
+        }
+
+        .titulo-seccion i {
+            font-size: 1.5rem;
+        }
+
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+        }
+
+        .card-mini {
+            background: #f8fafc;
+            border-radius: 18px;
+            padding: 0.8rem 1rem;
+            border: 1px solid #e2edf2;
+        }
+
+        .badge {
+            background: #e2eaf1;
+            color: #1e5a6e;
+            font-weight: 600;
+            font-size: 0.7rem;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+
+        p, li {
+            color: #1e293b;
+            line-height: 1.4;
+            font-size: 0.85rem;
+        }
+
+        ul, .lista-personal {
+            padding-left: 1.2rem;
+            margin-top: 0.3rem;
+        }
+        li {
+            margin: 0.3rem 0;
+        }
+
+        .highlight {
+            background: #fef9e3;
+            padding: 0.1rem 0.3rem;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+
+        hr {
+            margin: 0.3rem 0;
+            border-color: #e9ecef;
+        }
+
+        .resumen-box {
+            background: #eef2ff;
+            border-radius: 24px;
+            padding: 1rem 1.5rem;
+            border-left: 8px solid #2c7da0;
+        }
+
+        .footer-cierre {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            border-top: 1px dashed #cbd5e1;
+            padding-top: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        /* para simular iconos (unicode / emojis) */
+        .icon-em {
+            font-size: 1.25rem;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+                margin: 0;
+            }
+            .folleto {
+                box-shadow: none;
+                border-radius: 0;
+                width: 30cm;
+                height: 20cm;
+                overflow: visible;
+            }
+            .seccion {
+                break-inside: avoid;
+            }
+        }
+
+        /* Ajuste para pantallas pequeñas: escala pero mantiene relación */
+        @media (max-width: 32cm) {
+            body {
+                transform: scale(0.95);
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="folleto">
+    <div class="contenido-folleto">
+        
+        <!-- 1. PRESENTACION -->
+        <div class="seccion">
+            <div class="titulo-seccion">
+                <span>📦</span> 
+                <span>PRESENTACIÓN · SISTEMA DE DEPÓSITO (STOCK)</span>
+            </div>
+            <p><strong>SmartStock Warehouse</strong> es una solución integral para la gestión de inventarios en tiempo real, diseñada para optimizar el control de existencias, reducir pérdidas y agilizar los procesos logísticos. Desde pequeños almacenes hasta grandes centros de distribución, nuestro sistema garantiza trazabilidad total y eficiencia operativa.</p>
+            <p style="margin-top: 8px;">✔️ Integración con hardware (lectores RFID, códigos de barras) y software modular adaptable a cualquier rubro.</p>
+        </div>
+        
+        <!-- 2. OBJETIVO -->
+        <div class="seccion">
+            <div class="titulo-seccion">
+                <span>🎯</span> 
+                <span>OBJETIVO</span>
+            </div>
+            <p>Maximizar la precisión del inventario, reducir los desabastecimientos y sobre-stocks, automatizar los flujos de entrada/salida de mercancía, y proporcionar indicadores clave (KPI) para la toma de decisiones estratégicas en el depósito.</p>
+        </div>
+        
+        <!-- 3. FUNCIONALIDAD CLAVE (grid) -->
+        <div class="seccion">
+            <div class="titulo-seccion">
+                <span>⚙️</span> 
+                <span>FUNCIONALIDAD CLAVE</span>
+            </div>
+            <div class="grid-2col">
+                <div class="card-mini">
+                    <div class="badge">📡 Trazabilidad</div>
+                    <p>Registro por lote, fecha de vencimiento, ubicación (rack/estante). Historial de movimientos.</p>
+                </div>
+                <div class="card-mini">
+                    <div class="badge">🔄 Sincronización</div>
+                    <p>Actualización automática con ventas, compras y traslados entre depósitos.</p>
+                </div>
+                <div class="card-mini">
+                    <div class="badge">📊 Dashboards</div>
+                    <p>Paneles con stock crítico, rotación, pronósticos y alertas configurables.</p>
+                </div>
+                <div class="card-mini">
+                    <div class="badge">📱 Móvil + RF</div>
+                    <p>Aplicación para lectores de código de barras y dispositivos móviles (Android/iOS).</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 4. VENTAJAS -->
+        <div class="seccion">
+            <div class="titulo-seccion">
+                <span>✅</span> 
+                <span>VENTAJAS</span>
+            </div>
+            <ul>
+                <li>➕ <span class="highlight">Reducción del 40% en errores de inventario</span> mediante validaciones cruzadas.</li>
+                <li>⚡ <span class="highlight">Ahorro de tiempo</span> en conteos cíclicos y auditorías (hasta un 60% más rápido).</li>
+                <li>📈 <span class="highlight">Mejora del flujo de efectivo</span> al evitar excesos de stock innecesario.</li>
+                <li>🔌 <span class="highlight">Integración con ERPs</span> (SAP, Oracle, Odoo, etc.) mediante API REST.</li>
+                <li>🧑‍💻 <span class="highlight">Curva de aprendizaje corta</span> – Interfaz intuitiva y capacitación incluida.</li>
+            </ul>
+        </div>
+        
+        <!-- 5. SEGURIDAD -->
+        <div class="seccion">
+            <div class="titulo-seccion">
+                <span>🔒</span> 
+                <span>SEGURIDAD</span>
+            </div>
+            <div class="grid-2col">
+                <div class="card-mini">
+                    <strong>🔐 Control de acceso</strong>
+                    <p>Roles (administrador, supervisor, operario) + autenticación 2FA opcional. Traza de auditoría completa.</p>
+                </div>
+                <div class="card-mini">
+                    <strong>☁️ Respaldo cifrado</strong>
+                    <p>Copias de seguridad automáticas cifradas en tránsito y reposo (AES-256).</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 6. DESCRIPCIONES TÉCNICAS: aplicaciones, mantenimiento -->
+        <div class="seccion">
+            <div class="titulo-seccion">
+                <span>🖥️</span> 
+                <span>DESCRIPCIONES TÉCNICAS</span>
+            </div>
+            <div class="grid-2col" style="margin-bottom: 1rem;">
+                <div class="card-mini">
+                    <div class="badge">🏢 APLICACIÓN ADMINISTRATIVA</div>
+                    <p>Panel web con métricas globales, gestión de usuarios, reportes avanzados (Excel/PDF), configuración de parámetros de stock mínimo/máximo, órdenes de reposición automáticas.</p>
+                </div>
+                <div class="card-mini">
+                    <div class="badge">📲 APLICACIÓN OPERATIVA</div>
+                    <p>App para dispositivos móviles y terminales de mano: registro de recepción, picking, packing, verificación de inventario cíclico. Sincronización offline con actualización posterior.</p>
+                </div>
+            </div>
+            <div class="grid-2col">
+                <div class="card-mini">
+                    <div class="badge">🛠️ MANTENIMIENTO</div>
+                    <p>Actualizaciones semanales de base de conocimiento; parches de seguridad cada mes. Mantenimiento predictivo sobre hardware integrado (lectores, impresoras). Soporte 24/7 con SLA garantizado.</p>
+                </div>
+                <div class="card-mini">
+                    <div class="badge">🧩 ARQUITECTURA</div>
+                    <p>Microservicios Docker + Kubernetes, base de datos PostgreSQL, API GraphQL/REST. Front-end React y PWA para operadores.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 7. PASOS PARA LA IMPLEMENTACIÓN -->
+        <div class="seccion">
+            <div class="titulo-seccion">
+                <span>🚀</span> 
+                <span>PASOS PARA LA IMPLEMENTACIÓN</span>
+            </div>
+            <ol style="margin-left: 1.2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem 1rem;">
+                <li><strong>1. Análisis y relevamiento</strong> – Levantamiento de procesos y SKU.</li>
+                <li><strong>2. Configuración inicial</strong> – Parametrización de almacenes, usuarios, umbrales.</li>
+                <li><strong>3. Migración de datos</strong> – Carga masiva de inventario inicial y catálogo.</li>
+                <li><strong>4. Integración tecnológica</strong> – Conectar hardware (impresoras, escáneres).</li>
+                <li><strong>5. Pruebas piloto</strong> – Simulación de movimientos en entorno real.</li>
+                <li><strong>6. Capacitación</strong> – Entrenamiento a operadores y administradores.</li>
+                <li><strong>7. Go-live & acompañamiento</strong> – Puesta en producción + soporte intensivo.</li>
+                <li><strong>8. Optimización continua</strong> – Ajustes post-implementación y mejoras.</li>
+            </ol>
+        </div>
+        
+        <!-- 8. RESUMEN (Refuerzo) -->
+        <div class="resumen-box">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                <span style="font-size: 1.5rem;">📋</span> 
+                <strong style="font-size: 1.1rem;">RESUMEN EJECUTIVO</strong>
+            </div>
+            <p><strong>SmartStock Warehouse</strong> aporta visibilidad total del depósito, aumenta la precisión del stock, reduce costos logísticos y mejora la productividad del equipo. Implementación ágil, escalable y con métricas en tiempo real. Un ecosistema preparado para las exigencias del comercio actual.</p>
+        </div>
+        
+        <!-- 9. PREGUNTAS, OBJECIONES Y DUDAS TÉCNICAS -->
+        <div class="seccion">
+            <div class="titulo-seccion">
+                <span>❓</span> 
+                <span>PREGUNTAS, OBJECIONES & DUDAS TÉCNICAS</span>
+            </div>
+            <div class="grid-2col">
+                <div class="card-mini">
+                    <strong>🤔 ¿El sistema funciona sin conexión a internet?</strong>
+                    <p>Sí, la aplicación operativa tiene modo offline. Los datos se sincronizan automáticamente al restablecerse la conectividad.</p>
+                </div>
+                <div class="card-mini">
+                    <strong>⚙️ ¿Es compatible con equipos de escaneo antiguos?</strong>
+                    <p>Soporte para lectores de código de barras mediante teclado emulado, bluetooth y API. Probamos compatibilidad con modelos Honeywell, Zebra, Datalogic.</p>
+                </div>
+                <div class="card-mini">
+                    <strong>💰 ¿Qué inversión requiere la migración de datos?</strong>
+                    <p>Ofrecemos asesores ETL y herramientas automatizadas que reducen el tiempo de carga. Incluido en plan de implementación.</p>
+                </div>
+                <div class="card-mini">
+                    <strong>🛡️ ¿Cómo se protege la información frente a accesos internos?</strong>
+                    <p>Registro de todas las acciones + roles granulares (solo ciertos usuarios pueden modificar stock o eliminar registros).</p>
+                </div>
+                <div class="card-mini">
+                    <strong>📈 ¿Puedo exportar informes a sistemas contables externos?</strong>
+                    <p>Sí, generación de informes configurables en CSV, XML y conexión directa vía API para SAP, QuickBooks, otros.</p>
+                </div>
+                <div class="card-mini">
+                    <strong>🧠 ¿Requiere servidores dedicados?</strong>
+                    <p>Opción cloud (SaaS) o on-premise según normativas. Nos adaptamos a su infraestructura.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 10. CIERRE + CONTACTO -->
+        <div class="seccion" style="background: #f0f7fa;">
+            <div class="titulo-seccion">
+                <span>🎯</span> 
+                <span>CIERRE · PRÓXIMOS PASOS</span>
+            </div>
+            <p>SmartStock Warehouse no es solo un sistema, es un habilitador de eficiencia. Invitamos a programar una demostración personalizada donde simularemos sus flujos de trabajo y resolveremos dudas específicas de integración.</p>
+            <div class="footer-cierre">
+                <div>
+                    <p>📞 +34 900 123 456  |  ✉️ demo@smartstock.com</p>
+                    <p>🌐 www.smartstockwarehouse.com/folleto</p>
+                </div>
+                <div style="font-weight: 600; background: #1f5e6e; color: white; padding: 6px 14px; border-radius: 40px;">
+                    ⚡ Transforma tu depósito hoy
+                </div>
+            </div>
+            <hr style="margin-top: 10px;">
+            <p style="font-size: 0.7rem; text-align: center; color: #4b5563;">Folleto técnico versión 2.0 | Dimensiones 20cm x 30cm | Sistema integral de gestión de stock</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

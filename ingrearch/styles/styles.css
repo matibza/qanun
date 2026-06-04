@@ -1,0 +1,1029 @@
+/* ---------- VARIABLES GLOBALES ---------- */
+:root {
+    /* Colores base */
+    --color-principal: #1e2229;
+    --color-secundario: #2a303c;
+    --color-acento: #ffb703;
+    --color-texto: #ffffff;
+    --color-texto-oscuro: #333333;
+    --color-fondo: #f4f5f7;
+    --fuente: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+    /* Colores específicos por módulo (se usan según contexto) */
+    --color-stock: #0288d1;
+    --color-autoelevadores: #f57c00;
+    --color-personal: #388e3c;
+    --color-turnos: #7b1fa2;
+    --color-vacaciones: #d32f2f;
+    --color-analisis: #0097a7;
+    
+    /* Estados y métricas */
+    --color-exito: #388e3c;
+    --color-alerta: #f57c00;
+    --color-peligro: #d32f2f;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--fuente);
+    background-color: var(--color-fondo);
+    color: var(--color-texto-oscuro);
+    line-height: 1.6;
+}
+
+/* ========== ESTILOS DEL CHECKLIST (Página A4) ========== */
+
+/* Configuración de la página A4 para impresión */
+@page {
+    size: A4;
+    margin: 10mm 15mm 10mm 15mm;
+}
+
+/* Estilos base para el documento checklist */
+body.checklist-body {
+    font-family: var(--fuente, Arial, sans-serif);
+    font-size: 11px;
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-fondo, #f4f5f7);
+    color: var(--color-texto-oscuro, #333333);
+}
+
+/* Contenedor principal del checklist */
+.checklist-page {
+    width: 100%;
+    max-width: 180mm;
+    margin: 0 auto;
+    background: white;
+    padding: 5mm;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* Tablas del checklist */
+.checklist-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 8px;
+}
+
+.checklist-table th,
+.checklist-table td {
+    border: 1px solid #cbd5e0;
+    padding: 4px 6px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+/* Tablas generales del sistema (manteniendo compatibilidad) */
+table:not(.checklist-table) {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+/* Encabezado del checklist */
+.header-table td,
+.info-table td {
+    padding: 3px 6px;
+}
+
+/* Tabla Principal de Picking */
+.picking-table th {
+    font-size: 10px;
+    padding: 5px 2px;
+    background: linear-gradient(135deg, var(--color-principal) 0%, var(--color-secundario) 100%);
+    color: var(--color-texto, #ffffff);
+}
+
+.picking-table tr:hover td {
+    background-color: #f1f3f5;
+}
+
+/* Distribución de carga */
+.dist-container {
+    display: flex;
+    border: 1px solid #cbd5e0;
+    margin-bottom: 8px;
+    height: 60px;
+    background: white;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.dist-title {
+    width: 15%;
+    padding: 5px;
+    font-size: 10px;
+    font-weight: bold;
+    border-right: 1px solid #cbd5e0;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, var(--color-principal) 0%, var(--color-secundario) 100%);
+    color: var(--color-texto, #ffffff);
+}
+
+.dist-main {
+    width: 65%;
+    padding: 4px;
+    font-size: 9px;
+    border-right: 1px solid #cbd5e0;
+    background: #ffffff;
+    color: #2d3748;
+}
+
+.dist-side {
+    width: 20%;
+    padding: 4px;
+    font-size: 9px;
+    background: #ffffff;
+    color: #2d3748;
+}
+
+/* Listas de verificación (Checklists) */
+.checklist-data-table td {
+    font-size: 10px;
+    padding: 6px;
+}
+
+/* Pie de página de firmas */
+.footer-table td {
+    width: 50%;
+    height: 18px;
+}
+
+.footer-table td strong {
+    color: var(--color-principal);
+}
+
+/* Badge opcional para checklist */
+.badge-check {
+    display: inline-block;
+    padding: 0.25rem 0.6rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    background-color: var(--color-exito, #388e3c);
+    color: white;
+}
+
+/* Clases utilitarias del checklist */
+.text-center { text-align: center; }
+
+.bg-gray { 
+    background: linear-gradient(135deg, var(--color-principal) 0%, var(--color-secundario) 100%);
+    color: var(--color-texto, #ffffff);
+    font-weight: bold;
+}
+
+/* Alturas específicas del checklist */
+.h-blank { height: 22px; }
+.h-large-blank { height: 45px; }
+.h-comment { height: 30px; }
+
+/* ========== ESTILOS DEL ORGANIGRAMA ========== */
+body.org-ch-page {
+    background: linear-gradient(135deg, var(--color-principal) 0%, var(--color-secundario) 100%);
+    font-family: var(--fuente);
+    padding: 20px;
+    min-height: 100vh;
+}
+
+.org-ch-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 30px 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+.org-ch-wrapper h1 {
+    text-align: center;
+    color: #2d3748;
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.org-ch-wrapper .subtitle {
+    text-align: center;
+    color: #4a5568;
+    margin-bottom: 40px;
+    font-size: 1rem;
+    border-bottom: 2px solid #cbd5e0;
+    display: inline-block;
+    width: auto;
+    padding-bottom: 10px;
+}
+
+.org-ch-wrapper .title-container {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Contenedor del organigrama con scroll horizontal si es necesario */
+.org-chart {
+    overflow-x: auto;
+    overflow-y: visible;
+    padding: 20px 10px 40px 10px;
+    position: relative;
+}
+
+/* Estructura flex para los niveles */
+.levels-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 30px;
+    flex-wrap: nowrap;
+    min-width: min-content;
+}
+
+/* Cada nivel */
+.level {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    min-width: 200px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: slideUp 0.6s ease forwards;
+}
+
+/* Retrasos escalonados para cada nivel */
+.level-0 { animation-delay: 0.05s; }
+.level-1 { animation-delay: 0.15s; }
+.level-2 { animation-delay: 0.25s; }
+.level-3 { animation-delay: 0.35s; }
+.level-4 { animation-delay: 0.45s; }
+.level-5 { animation-delay: 0.55s; }
+
+@keyframes slideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Encabezado del nivel */
+.level-header {
+    background: linear-gradient(135deg, var(--color-principal) 0%, var(--color-secundario) 100%);
+    color: var(--color-texto);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-align: center;
+    width: 100%;
+    white-space: nowrap;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Tarjeta de persona */
+.person-card {
+    background: white;
+    width: 160px;
+    height: 160px;
+    padding: 15px 10px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 1px solid #e2e8f0;
+    position: relative;
+}
+
+.person-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    border-color: var(--color-acento);
+}
+
+/* Avatar circular */
+.avatar {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--color-principal) 0%, var(--color-secundario) 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 12px;
+    color: var(--color-texto);
+    font-weight: bold;
+    font-size: 1.2rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.name {
+    font-weight: 700;
+    font-size: 0.7rem;
+    color: #2d3748;
+    margin-bottom: 6px;
+}
+
+.role {
+    font-size: 0.55rem;
+    color: var(--color-acento);
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.department {
+    font-size: 0.5rem;
+    color: #718096;
+    padding-top: 6px;
+    border-top: 1px solid #e2e8f0;
+    margin-top: 6px;
+}
+
+/* Panel de información del organigrama */
+.org-ch-wrapper .info-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+    padding: 12px 24px;
+    border-radius: 12px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.org-ch-wrapper .total-badge {
+    background: var(--color-personal);
+    color: var(--color-texto);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.org-ch-wrapper .cascade-badge {
+    background: var(--color-acento);
+    color: var(--color-principal);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.org-ch-wrapper footer {
+    text-align: center;
+    margin-top: 20px;
+    color: #718096;
+    font-size: 0.75rem;
+}
+
+/* Scrollbar personalizada del organigrama */
+.org-chart::-webkit-scrollbar {
+    height: 8px;
+}
+
+.org-chart::-webkit-scrollbar-track {
+    background: #e2e8f0;
+    border-radius: 10px;
+}
+
+.org-chart::-webkit-scrollbar-thumb {
+    background: var(--color-principal);
+    border-radius: 10px;
+}
+
+/* ========== ESTILOS DEL MÓDULO DE DEPÓSITO ========== */
+
+/* ---------- HEADER Y NAVEGACIÓN (Común a todos) ---------- */
+header {
+    background-color: var(--color-principal);
+    color: var(--color-texto);
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.logo span {
+    color: var(--color-acento);
+}
+
+/* Navegación común */
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+}
+
+nav a, .btn-volver {
+    color: var(--color-texto);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+nav a:hover, .btn-volver:hover {
+    color: var(--color-acento);
+}
+
+/* ---------- CONTENEDORES PRINCIPALES ---------- */
+main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+}
+
+.hero {
+    background: linear-gradient(rgba(30, 34, 41, 0.85), rgba(42, 48, 60, 0.85)), 
+                url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+    height: 40vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--color-texto);
+    padding: 0 1rem;
+}
+
+.hero-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    color: #ccc;
+}
+
+/* ---------- SECCIÓN TÍTULOS (Común) ---------- */
+.seccion-titulo {
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.seccion-titulo h2, .seccion-encabezado h2 {
+    font-size: 2rem;
+    color: var(--color-principal);
+}
+
+.seccion-titulo::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background-color: var(--color-acento);
+    margin: 0.5rem auto 0 auto;
+    border-radius: 2px;
+}
+
+.seccion-encabezado {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+}
+
+/* Bordes por módulo */
+.seccion-encabezado.border-stock { border-bottom: 3px solid var(--color-stock); }
+.seccion-encabezado.border-turnos { border-bottom: 3px solid var(--color-turnos); }
+.seccion-encabezado.border-analisis { border-bottom: 3px solid var(--color-analisis); }
+.seccion-encabezado.border-personal { border-bottom: 3px solid var(--color-personal); }
+.seccion-encabezado.border-vacaciones { border-bottom: 3px solid var(--color-vacaciones); }
+
+/* ---------- GRILLAS Y CARDS (Dashboard) ---------- */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+/* Cards base */
+.card, .kpi-box, .kpi-card, .panel-formulario, .panel-tabla {
+    background-color: #ffffff;
+    border-radius: 6px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-top: 5px solid var(--color-secundario);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+}
+
+/* Variaciones de color en el borde superior */
+.card.stock { --color-secundario: var(--color-stock); border-top-color: var(--color-stock); }
+.card.autoelevadores { --color-secundario: var(--color-autoelevadores); border-top-color: var(--color-autoelevadores); }
+.card.personal { --color-secundario: var(--color-personal); border-top-color: var(--color-personal); }
+.card.turnos { --color-secundario: var(--color-turnos); border-top-color: var(--color-turnos); }
+.card.vacaciones { --color-secundario: var(--color-vacaciones); border-top-color: var(--color-vacaciones); }
+.card.analisis { --color-secundario: var(--color-analisis); border-top-color: var(--color-analisis); }
+
+.card h3, .kpi-box h3 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    color: var(--color-principal);
+}
+
+.card p, .kpi-box p {
+    color: #666;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    flex-grow: 1;
+}
+
+.card-btn {
+    display: inline-block;
+    background-color: var(--color-principal);
+    color: var(--color-texto);
+    padding: 0.7rem 1.5rem;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.card-btn:hover {
+    background-color: var(--color-acento);
+    color: var(--color-principal);
+}
+
+/* ---------- KPI CARDS (Genérico reutilizable) ---------- */
+.kpi-card {
+    padding: 1.5rem;
+    border-left: 4px solid var(--color-principal);
+}
+
+.kpi-card p {
+    font-size: 0.9rem;
+    color: #666;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.kpi-card .numero, .stat-grande {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--color-principal);
+    margin-top: 0.2rem;
+}
+
+.kpi-card.alerta {
+    border-left-color: var(--color-alerta);
+}
+
+/* ---------- BARRAS DE ACCIONES Y FILTROS (Común) ---------- */
+.acciones-barra {
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 6px 6px 0 0;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.buscador {
+    padding: 0.6rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 300px;
+    font-family: var(--fuente);
+}
+
+/* Botones por módulo */
+.btn-accion, .btn-submit {
+    background-color: var(--color-principal);
+    color: var(--color-texto);
+    padding: 0.6rem 1.2rem;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-accion.stock { background-color: var(--color-stock); }
+.btn-accion.stock:hover { background-color: #0277bd; }
+
+.btn-accion.personal { background-color: var(--color-personal); }
+.btn-accion.personal:hover { background-color: #2e7d32; }
+
+.btn-accion.vacaciones, .btn-submit { background-color: var(--color-vacaciones); }
+.btn-accion.vacaciones:hover, .btn-submit:hover { background-color: #b71c1c; }
+
+/* Navegación entre meses */
+.mes-control {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.btn-flecha {
+    background-color: var(--color-principal);
+    color: var(--color-texto);
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* ---------- TABLAS (Estilo unificado del sistema) ---------- */
+.tabla-contenedor {
+    background-color: #ffffff;
+    border-radius: 0 0 6px 6px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    overflow-x: auto;
+}
+
+th:not(.picking-table th) {
+    background-color: var(--color-principal);
+    color: var(--color-texto);
+    font-weight: 600;
+    padding: 0.8rem 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+}
+
+td:not(.checklist-table td) {
+    padding: 0.8rem 1rem;
+    font-size: 0.9rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+tr:hover:not(.picking-table tr) {
+    background-color: #f1f3f5;
+}
+
+tr:nth-child(even):not(.picking-table tr) {
+    background-color: #f9fafb;
+}
+
+/* Columna fecha específica para calendario turnos */
+.col-fecha {
+    font-weight: 600;
+    background-color: #f8fafc;
+    text-align: left;
+    padding-left: 1rem;
+    width: 150px;
+}
+
+/* Fines de semana en calendario */
+.fin-semana {
+    background-color: #fffbeb;
+}
+
+/* ---------- BADGES Y ESTADOS (Unificados) ---------- */
+.badge {
+    display: inline-block;
+    padding: 0.25rem 0.6rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Estados de stock */
+.badge.disponible { background-color: #e8f5e9; color: #2e7d32; }
+.badge.critico { background-color: #ffebee; color: #c62828; }
+.badge.baja { background-color: #fff3e0; color: #ef6c00; }
+
+/* Estados de personal */
+.badge.activo { background-color: #e8f5e9; color: #2e7d32; }
+.badge.descanso { background-color: #e3f2fd; color: #0d47a1; }
+.badge.licencia { background-color: #ffebee; color: #c62828; }
+
+/* Estados de vacaciones */
+.badge.aprobado { background-color: #e8f5e9; color: #2e7d32; }
+.badge.pendiente { background-color: #fff3e0; color: #ef6c00; }
+.badge.rechazado { background-color: #ffebee; color: #c62828; }
+
+/* ---------- BLOQUES DE HORARIOS (Calendario Turnos) ---------- */
+.h-badge {
+    display: inline-block;
+    width: 90%;
+    padding: 0.3rem 0;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+.h-badge.manana { background-color: #e3f2fd; color: #0d47a1; }
+.h-badge.tarde { background-color: #fff3e0; color: #e65100; }
+.h-badge.noche { background-color: #ede7f6; color: #4a148c; }
+.h-badge.franco { background-color: #f1f5f9; color: #64748b; font-weight: normal; }
+
+/* ---------- COMPONENTES DE GRÁFICOS Y MÉTRICAS ---------- */
+.dashboard-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.kpi-box {
+    padding: 1.5rem;
+}
+
+.kpi-box h3 {
+    font-size: 1.1rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.kpi-meta {
+    font-size: 0.8rem;
+    color: #888;
+    font-weight: normal;
+}
+
+.stat-grande {
+    text-align: center;
+    margin: 0.5rem 0;
+}
+
+.stat-sub {
+    font-size: 0.85rem;
+    color: #666;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+/* Barras de progreso */
+.progress-container {
+    margin-bottom: 1rem;
+}
+
+.progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    margin-bottom: 0.25rem;
+    font-weight: 500;
+}
+
+.progress-bar-bg {
+    background-color: #eaedf1;
+    height: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    border-radius: 5px;
+}
+
+/* Mini listas */
+.mini-list {
+    list-style: none;
+}
+
+.mini-list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px dashed #eee;
+    font-size: 0.9rem;
+}
+
+.mini-list-item:last-child {
+    border-bottom: none;
+}
+
+/* Textos de estado */
+.txt-exito { color: var(--color-exito); font-weight: bold; }
+.txt-alerta { color: var(--color-alerta); font-weight: bold; }
+.txt-peligro { color: var(--color-peligro); font-weight: bold; }
+
+/* ---------- LAYOUT DE DOS COLUMNAS (Vacaciones) ---------- */
+.contenido-layout {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 2rem;
+}
+
+.panel-formulario, .panel-tabla {
+    height: fit-content;
+}
+
+.panel-formulario {
+    padding: 1.5rem;
+}
+
+.panel-formulario h3, .tabla-cabecera-filtro h3 {
+    font-size: 1.1rem;
+    margin-bottom: 1.2rem;
+    color: var(--color-principal);
+    border-bottom: 1px solid #eee;
+    padding-bottom: 0.5rem;
+}
+
+.tabla-cabecera-filtro {
+    padding: 1rem;
+    background-color: #fff;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Formularios */
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+    color: #555;
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 0.6rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: var(--fuente);
+    font-size: 0.9rem;
+}
+
+/* ---------- GRILLAS DE RESUMEN (Personal, Stock, Vacaciones) ---------- */
+.resumen-personal, .resumen-stock, .resumen-vacaciones {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+/* ---------- FOOTER (Común) ---------- */
+footer {
+    background-color: var(--color-principal);
+    color: var(--color-texto);
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: 4rem;
+    font-size: 0.9rem;
+}
+
+footer p {
+    color: #888;
+}
+
+/* ---------- RESPONSIVE (Unificado) ---------- */
+@media (max-width: 992px) {
+    .contenido-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+    
+    nav, nav ul {
+        display: none;
+    }
+    
+    .seccion-encabezado {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    
+    .acciones-barra {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .buscador {
+        width: 100%;
+    }
+    
+    .dashboard-row, .contenido-layout {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Responsive del checklist */
+    .checklist-page {
+        padding: 2mm;
+    }
+    
+    .checklist-table th,
+    .checklist-table td {
+        padding: 2px 3px;
+        font-size: 9px;
+    }
+    
+    /* Responsive del organigrama */
+    .levels-container {
+        gap: 15px;
+    }
+    
+    .person-card {
+        width: 170px;
+        padding: 10px 8px;
+    }
+    
+    .avatar {
+        width: 50px;
+        height: 50px;
+        font-size: 1rem;
+    }
+}
+	.rojo {
+        background: red;
+        color: black;
+        font-size: 1.5em;
+        border-radius: 5px;
+    }
+/* Contenedor responsive para tablas */
+.tabla-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+}
+
+.tabla-responsive table {
+    min-width: 600px; /* Ancho mínimo para mantener legibilidad */
+    width: 100%;
+}
+
+/* Para pantallas muy pequeñas */
+@media (max-width: 480px) {
+    .checklist-table th,
+    .checklist-table td {
+        padding: 6px 4px;
+        font-size: 10px;
+    }
+    
+    .checklist-table th {
+        font-size: 9px;
+    }
+    
+    .dist-container {
+        flex-direction: column;
+        height: auto;
+    }
+    
+    .dist-title,
+    .dist-main,
+    .dist-side {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #cbd5e0;
+    }
+    
+    .checklist-page {
+        padding: 8px;
+    }
+}

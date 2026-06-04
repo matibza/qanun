@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IngreAr - Análisis de Datos y Estadísticas</title>
+	<link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+
+    <!-- Encabezado -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">IngreAr</div>
+            <a href="index2.html" class="btn-volver">&#8592; Volver al Panel</a>
+        </div>
+    </header>
+
+    <!-- Contenedor de Estadísticas -->
+    <main>
+        
+        <div class="seccion-encabezado">
+            <h2>Métricas & Análisis de Datos</h2>
+            <p style="color: #666; font-size: 0.95rem;">Resumen Estadístico Mensual de Operaciones</p>
+        </div>
+
+        <!-- FILA 1: Autoelevadores y Despacho de Camiones -->
+        <div class="dashboard-row">
+            
+            <!-- Mantenimiento de Autoelevadores -->
+            <div class="kpi-box">
+                <h3>Flota Autoelevadores <span class="kpi-meta">Estado Actual</span></h3>
+                <div class="stat-grande">92%</div>
+                <div class="stat-sub">Disponibilidad de maquinaria operativa</div>
+                
+                <div class="progress-container">
+                    <div class="progress-label"><span>Unidades Activas (11/12)</span> <span class="txt-exito">Óptimo</span></div>
+                    <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 92%; background-color: var(--color-exito);"></div></div>
+                </div>
+                
+                <ul class="mini-list" style="margin-top: auto;">
+                    <li class="mini-list-item"><span>Mantenimientos Preventivos (Mes)</span> <span class="txt-exito">Al día</span></li>
+                    <li class="mini-list-item"><span>Unidad en Taller mecánico</span> <span class="txt-peligro">AE-04 (Hidráulico)</span></li>
+                    <li class="mini-list-item"><span>Próximo Service General</span> <span>05/06/2026</span></li>
+                </ul>
+            </div>
+
+            <!-- Despacho de Camiones -->
+            <div class="kpi-box">
+                <h3>Despacho de Camiones <span class="kpi-meta">Eficiencia (OTD)</span></h3>
+                <div class="stat-grande">45 min</div>
+                <div class="stat-sub">Tiempo promedio de carga y liberación (Dwell Time)</div>
+                
+                <div class="progress-container">
+                    <div class="progress-label"><span>Cumplimiento de Ventanas Horarias</span> <span class="txt-alerta">88%</span></div>
+                    <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 88%; background-color: var(--color-alerta);"></div></div>
+                </div>
+
+                <ul class="mini-list" style="margin-top: auto;">
+                    <li class="mini-list-item"><span>Camiones Despachados Hoy</span> <span style="font-weight:600;">34 unidades</span></li>
+                    <li class="mini-list-item"><span>Demoras en Andén</span> <span class="txt-alerta">2 (Sector B)</span></li>
+                    <li class="mini-list-item"><span>Tasa de Error en Estiba</span> <span class="txt-exito">0.4%</span></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- FILA 2: Gestión de Stock y Seguridad Operativa -->
+        <div class="dashboard-row">
+            
+            <!-- Gestión del Stock -->
+            <div class="kpi-box">
+                <h3>Gestión de Stock <span class="kpi-meta">Inventario</span></h3>
+                <div class="stat-grande">99.6%</div>
+                <div class="stat-sub">IRA (Exactitud de Registro de Inventario)</div>
+                
+                <div class="progress-container">
+                    <div class="progress-label"><span>Ocupación de Capacidad de Almacenaje</span> <span>84%</span></div>
+                    <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 84%; background-color: var(--color-analisis);"></div></div>
+                </div>
+
+                <ul class="mini-list" style="margin-top: auto;">
+                    <li class="mini-list-item"><span>Rotación de Inventario (Semanas)</span> <span>2.4 vueltas</span></li>
+                    <li class="mini-list-item"><span>Diferencias detectadas (Auditoría)</span> <span class="txt-exito">Ninguna</span></li>
+                    <li class="mini-list-item"><span>SKUs Bloqueados por Calidad</span> <span class="txt-alerta">2 lotes</span></li>
+                </ul>
+            </div>
+
+            <!-- Seguridad Operativa -->
+            <div class="kpi-box">
+                <h3>Seguridad e Higiene <span class="kpi-meta">Siniestralidad</span></h3>
+                <div class="stat-grande">210</div>
+                <div class="stat-sub">Días consecutivos sin accidentes de trabajo</div>
+                
+                <div class="progress-container">
+                    <div class="progress-label"><span>Uso de EPP obligatorios (Auditoría interna)</span> <span class="txt-exito">100%</span></div>
+                    <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 100%; background-color: var(--color-exito);"></div></div>
+                </div>
+
+                <ul class="mini-list" style="margin-top: auto;">
+                    <li class="mini-list-item"><span>Incidentes menores informados</span> <span class="txt-exito">0</span></li>
+                    <li class="mini-list-item"><span>Simulacro de Evacuación anual</span> <span class="badge-status" style="background-color: var(--color-exito);">Aprobado</span></li>
+                    <li class="mini-list-item"><span>Inspección de Racks (Golpes)</span> <span class="txt-alerta">1 Reportado en Pasillo A</span></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- FILA 3: Gestión de Limpieza e Infraestructura -->
+        <div class="dashboard-row">
+            
+            <!-- Gestión de Limpieza -->
+            <div class="kpi-box" style="grid-column: 1 / -1;">
+                <h3>Auditoría de Orden y Limpieza (5S) <span class="kpi-meta">Análisis por Sectores de Planta</span></h3>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-top: 1rem;">
+                    
+                    <div class="progress-container">
+                        <div class="progress-label"><span>Sector A (Racks & Picking)</span> <span class="txt-exito">95%</span></div>
+                        <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 95%; background-color: var(--color-exito);"></div></div>
+                    </div>
+
+                    <div class="progress-container">
+                        <div class="progress-label"><span>Sector B (Voluminosos)</span> <span class="txt-exito">90%</span></div>
+                        <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 90%; background-color: var(--color-exito);"></div></div>
+                    </div>
+
+                    <div class="progress-container">
+                        <div class="progress-label"><span>Docks de Carga y Descarga</span> <span class="txt-alerta">78%</span></div>
+                        <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 78%; background-color: var(--color-alerta);"></div></div>
+                    </div>
+
+                    <div class="progress-container">
+                        <div class="progress-label"><span>Playón Exterior / Patio</span> <span class="txt-exito">92%</span></div>
+                        <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 92%; background-color: var(--color-exito);"></div></div>
+                    </div>
+
+                </div>
+                <p style="font-size: 0.8rem; color: #666; margin-top: 1rem; border-top: 1px solid #eee; padding-top: 0.5rem;">
+                    * Nota: Se requiere reforzar el orden de pallets vacíos en el sector de andenes (Docks) al finalizar cada turno de carga.
+                </p>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Pie de página -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 IngreAr S.R.L.. - Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

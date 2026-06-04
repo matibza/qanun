@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IngreAr - Personal Operativo</title>
+	<link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+
+    <!-- Encabezado -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">IngreAr</div>
+            <a href="index2.html" class="btn-volver">&#8592; Volver al Panel</a>
+        </div>
+    </header>
+
+    <!-- Contenedor de Gestión de Personal -->
+    <main>
+        
+        <div class="seccion-encabezado">
+            <h2>Nómina de Personal Operativo</h2>
+            <p style="color: #666; font-size: 0.95rem;">Control de Planta y Asignación de Roles</p>
+        </div>
+
+        <!-- Tarjetas de Información Rápida (KPIs) -->
+        <section class="resumen-personal">
+            <div class="kpi-card">
+                <p>Personal Registrado</p>
+                <div class="numero">20 Operarios</div>
+            </div>
+            <div class="kpi-card">
+                <p>En Turno Actual</p>
+                <div class="numero">14 Activos</div>
+            </div>
+            <div class="kpi-card alerta">
+                <p>Francos / Descanso</p>
+                <div class="numero">4</div>
+            </div>
+            <div class="kpi-card">
+                <p>Licencia Médica</p>
+                <div class="numero">2</div>
+            </div>
+        </section>
+
+        <!-- Tabla de Control de Personal -->
+        <section>
+            <div class="acciones-barra">
+                <input type="text" class="buscador" placeholder="Buscar por operario, legajo o sector...">
+                <button class="btn-accion">+ Dar de Alta Operario</button>
+            </div>
+
+            <div class="tabla-contenedor">
+                <div class="org-ch-wrapper">
+    <div class="title-container">
+        <h1>🏢 Organigrama deposito</h1>
+        <div class="subtitle">27 profesionales · Estructura organizativa</div>
+    </div>
+
+    <div class="org-chart">
+        <div class="levels-container" id="orgLevels"></div>
+    </div>
+
+    <div class="info-bar">
+        <span class="cascade-badge">✨ IngreAr</span>
+        <span class="total-badge">👥 Total: 27 personas</span>
+    </div>
+    <footer>
+        Jefes → Analistas → Supervisores → Cargadores → Ayudantes
+    </footer>
+</div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Pie de página -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 IngreAr S.R.L. - Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+</body>
+<script>
+    // Datos de las 27 personas organizadas por niveles jerárquicos
+    const nivelesData = [
+        // Nivel 0: CEO (1 persona)
+
+        // Nivel 1: Dirección (3 personas)
+        [
+            { name: "Gabriela Fuentes", role: "Directora de Operaciones", department: "Operaciones", avatar: "GF" },
+            { name: "Ing. Roberto Méndez", role: "Director Comercial", department: "Comercial", avatar: "RM" },
+            { name: "Dr. Carlos Jiménez", role: "Director de Tecnología", department: "Innovación", avatar: "CJ" }
+        ],
+        // Nivel 2: Gerencia (6 personas)
+        [
+            { name: "Lic. Patricia Soto", role: "Gerente de Logística", department: "Operaciones", avatar: "PS" },
+            { name: "Ing. Fernando Ríos", role: "Gerente de Producción", department: "Operaciones", avatar: "FR" },
+            { name: "Mtra. Lucía Paredes", role: "Gerente de Ventas", department: "Comercial", avatar: "LP" },
+            { name: "Lic. Andrés Castro", role: "Gerente de Marketing", department: "Marketing", avatar: "AC" },
+            { name: "Ing. Silvia Mora", role: "Gerente de Desarrollo", department: "Tecnología", avatar: "SM" },
+            { name: "Dr. Eduardo Peña", role: "Gerente de Infraestructura", department: "TI", avatar: "EP" }
+        ],
+        // Nivel 3: Líderes de equipo / Subgerencia (8 personas)
+        [
+            { name: "Mtra. Claudia Rangel", role: "Lead de Cadena", department: "Logística", avatar: "CR" },
+            { name: "Ing. Héctor Quiroz", role: "Supervisor de Calidad", department: "Producción", avatar: "HQ" },
+            { name: "Lic. Daniela Flores", role: "Team Lead Ventas", department: "Comercial", avatar: "DF" },
+            { name: "Dg. Mariana Lozano", role: "Lead Creativo", department: "Marketing", avatar: "ML" },
+            { name: "Ing. Jorge Navarro", role: "Lead Frontend", department: "Desarrollo", avatar: "JN" },
+            { name: "Mtra. Raquel Solís", role: "Lead Backend", department: "Backend", avatar: "RS" },
+            { name: "Ing. Oscar Delgado", role: "Jefe de Soporte", department: "Infraestructura", avatar: "OD" },
+            { name: "Lic. Verónica Cruz", role: "Data Lead", department: "Analytics", avatar: "VC" }
+        ],
+        // Nivel 4: Especialistas senior (6 personas)
+        [
+            { name: "Mtra. Karina Montes", role: "Especialista SR", department: "Planificación", avatar: "KM" },
+            { name: "Ing. Luis Trejo", role: "Analista SR", department: "Comercial", avatar: "LT" },
+            { name: "Dg. Paola Villalobos", role: "UX Specialist", department: "Diseño", avatar: "PV" },
+            { name: "Ing. Ricardo Palma", role: "Security Engineer", department: "Ciberseguridad", avatar: "RP" },
+            { name: "Lic. Martha Gómez", role: "HR Business Partner", department: "Recursos Humanos", avatar: "MG" },
+            { name: "Arq. David Núñez", role: "Arquitecto Cloud", department: "Infraestructura", avatar: "DN" }
+        ],
+        // Nivel 5: Analistas / Coordinadores (3 personas)
+        [
+            { name: "Mtra. Laura Castillo", role: "Coordinadora PMO", department: "Proyectos", avatar: "LC" },
+            { name: "Ing. Armando Vega", role: "Analista de Datos", department: "Business Intelligence", avatar: "AV" },
+            { name: "Sandra Maldonado", role: "Especialista en Procesos", department: "Mejora Continua", avatar: "SM" }
+        ]
+    ];
+
+    // Verificar total de personas (debe ser 27)
+    let totalPersonas = 0;
+    nivelesData.forEach(nivel => {
+        totalPersonas += nivel.length;
+    });
+    console.log(`Total de personas cargadas: ${totalPersonas}`);
+
+    // Función para crear el organigrama
+    function buildOrgChart() {
+        const container = document.getElementById('orgLevels');
+        if (!container) {
+            console.error("No se encontró el contenedor");
+            return;
+        }
+        
+        container.innerHTML = '';
+        
+        // Recorrer cada nivel
+        nivelesData.forEach((nivel, nivelIndex) => {
+            // Crear contenedor del nivel
+            const levelDiv = document.createElement('div');
+            levelDiv.className = `level level-${nivelIndex}`;
+            
+            // Título del nivel
+            const levelHeader = document.createElement('div');
+            levelHeader.className = 'level-header';
+            
+            // Asignar título según el nivel
+                       
+            // Agregar cada persona del nivel
+            nivel.forEach(persona => {
+                const card = document.createElement('div');
+                card.className = 'person-card';
+                
+                // Avatar
+                const avatar = document.createElement('div');
+                avatar.className = 'avatar';
+                avatar.textContent = persona.avatar || persona.name.substring(0, 2).toUpperCase();
+                
+                // Nombre
+                const name = document.createElement('div');
+                name.className = 'name';
+                name.textContent = persona.name;
+                
+                // Rol
+                const role = document.createElement('div');
+                role.className = 'role';
+                role.textContent = persona.role;
+                
+                // Departamento
+                const dept = document.createElement('div');
+                dept.className = 'department';
+                dept.textContent = persona.department;
+                
+                card.appendChild(avatar);
+                card.appendChild(name);
+                card.appendChild(role);
+                card.appendChild(dept);
+                
+                levelDiv.appendChild(card);
+            });
+            
+            container.appendChild(levelDiv);
+        });
+        
+        // Verificar que se hayan creado todas las tarjetas
+        const totalCards = document.querySelectorAll('.person-card').length;
+        console.log(`Tarjetas creadas en el DOM: ${totalCards}`);
+        
+        // Si por algún motivo no son 27, mostrar advertencia
+        if (totalCards !== 27) {
+            console.warn(`Advertencia: Se esperaban 27 tarjetas, pero se crearon ${totalCards}`);
+            const infoBar = document.querySelector('.total-badge');
+            if (infoBar) {
+                infoBar.textContent = `⚠️ Total: ${totalCards}/27 personas`;
+                infoBar.style.backgroundColor = '#ed8936';
+            }
+        } else {
+            console.log("✅ Organigrama completado exitosamente con 27 personas");
+        }
+    }
+    
+    // Ejecutar la construcción del organigrama cuando la página esté lista
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', buildOrgChart);
+    } else {
+        buildOrgChart();
+    }
+    
+    // Agregar efecto de cascada adicional: cada tarjeta individual también aparece con un pequeño retraso
+    // Esto mejora aún más el efecto visual
+    function addExtraCascadeEffect() {
+        const cards = document.querySelectorAll('.person-card');
+        cards.forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+            setTimeout(() => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, 100 + (index * 15)); // Retraso progresivo
+        });
+    }
+    
+    // Ejecutar el efecto extra después de que el DOM esté listo
+    setTimeout(() => {
+        addExtraCascadeEffect();
+    }, 100);
+</script>
+</html>

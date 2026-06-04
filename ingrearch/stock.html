@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IngreAr - Control de Stock</title>
+	<link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo">IngreAr</div>
+            <a href="index2.html" class="btn-volver">&#8592; Volver al Panel</a>
+        </div>
+    </header>
+
+    <main>
+        
+        <div class="seccion-encabezado">
+            <h2>Control de Stock e Inventario</h2>
+            <p style="color: #666; font-size: 0.95rem;">Depósito Central</p>
+        </div>
+
+        <section class="resumen-stock">
+            <div class="kpi-card">
+                <p>Total SKUs Activos</p>
+                <div class="numero">1,240</div>
+            </div>
+            <div class="kpi-card">
+                <p>Capacidad de Racks</p>
+                <div class="numero">84%</div>
+            </div>
+            <div class="kpi-card alerta">
+                <p>Quiebres de Stock</p>
+                <div class="numero">4</div>
+            </div>
+            <div class="kpi-card">
+                <p>Ingresos Hoy</p>
+                <div class="numero">+320 bultos</div>
+            </div>
+
+        </section>
+
+        <section>
+            <div class="acciones-barra">
+                <input type="text" class="buscador" placeholder="Buscar por código, artículo o pasillo...">
+                <a href="control_stock.html"><button class="btn-accion">+ Registrar Movimiento</button></a>
+            </div>
+
+            <div class="tabla-contenedor">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Código SKU</th>
+                            <th>Descripción del Artículo</th>
+                            <th>Categoría</th>
+                            <th>Pasillo/Rack</th>
+                            <th>Cant. Disponible</th>
+                            <th>U. Medida</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>SKU-1024</strong></td>
+                            <td>Pallet Film Stretch Cristal 50cm</td>
+                            <td>Embalaje</td>
+                            <td>A-04-Top</td>
+                            <td>150</td>
+                            <td>Unidades</td>
+                            <td><span class="badge disponible">Disponible</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>SKU-2045</strong></td>
+                            <td>Cajas de Cartón Corrugado 40x40x40</td>
+                            <td>Insumos</td>
+                            <td>B-12-Medio</td>
+                            <td>12</td>
+                            <td>Unidades</td>
+                            <td><span class="badge critico">Stock Crítico</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>SKU-8812</strong></td>
+                            <td>Aceite Hidráulico Industrial (Bidón 5L)</td>
+                            <td>Mantenimiento</td>
+                            <td>M-02-Piso</td>
+                            <td>45</td>
+                            <td>Litros</td>
+                            <td><span class="badge disponible">Disponible</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>SKU-4401</strong></td>
+                            <td>Precintos Plásticos Negros 300mm x 100u</td>
+                            <td>Embalaje</td>
+                            <td>A-02-Bajo</td>
+                            <td>85</td>
+                            <td>Packs</td>
+                            <td><span class="badge baja">Stock Bajo</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>SKU-1090</strong></td>
+                            <td>Cinta Embalar Marrón 48mm x 100m</td>
+                            <td>Embalaje</td>
+                            <td>A-05-Medio</td>
+                            <td>500</td>
+                            <td>Unidades</td>
+                            <td><span class="badge disponible">Disponible</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>SKU-3122</strong></td>
+                            <td>Estructura Metálica Soporte Rack Tipo H</td>
+                            <td>Infraestructura</td>
+                            <td>Z-01-Piso</td>
+                            <td>3</td>
+                            <td>Unidades</td>
+                            <td><span class="badge baja">Stock Bajo</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 IngreAr S.R.L. - Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

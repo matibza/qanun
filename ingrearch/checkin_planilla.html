@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingredion - Control Diario de Autoelevadores</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background-color: #e2e8f0;
+            padding: 30px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .form-container {
+            max-width: 1300px;
+            width: 100%;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.15);
+            overflow-x: auto;
+            padding: 20px 16px 24px 16px;
+        }
+
+        /* Estilo general de la tabla */
+        .control-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            background-color: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .control-table caption {
+            text-align: left;
+            font-size: 18px;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 12px;
+            caption-side: top;
+            letter-spacing: -0.2px;
+        }
+
+        .control-table th, 
+        .control-table td {
+            border: 1px solid #cbd5e1;
+            padding: 12px 10px;
+            vertical-align: top;
+            line-height: 1.4;
+        }
+
+        .control-table th {
+            background-color: #f1f5f9;
+            font-weight: 700;
+            color: #0f172a;
+            font-size: 13px;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+        }
+
+        .bg-brand {
+            background-color: #1e3a5f;
+            color: white;
+        }
+
+        .brand-header {
+            background: #0b2b42;
+            color: white;
+            font-weight: 700;
+            font-size: 15px;
+        }
+
+        .subheader {
+            background-color: #e9ecef;
+            font-weight: 600;
+        }
+
+        .checklist-item {
+            font-weight: 500;
+            background-color: #fefce8;
+        }
+
+        .critical-note {
+            background-color: #fff3e3;
+            font-size: 12px;
+            color: #b45309;
+            font-weight: 500;
+            border-left: 3px solid #f97316;
+        }
+
+        .sign-row td {
+            background-color: #f8fafc;
+        }
+
+        .observaciones {
+            background-color: #fef9e3;
+        }
+
+        .text-small {
+            font-size: 12px;
+        }
+
+        .asterisk-red {
+            color: #dc2626;
+            font-weight: bold;
+        }
+
+        .footer-remark {
+            background-color: #f1f5f9;
+            font-size: 12px;
+            font-style: italic;
+            padding: 10px;
+        }
+
+        .tooltip-note {
+            border-bottom: 1px dashed #c2410c;
+            cursor: help;
+        }
+
+        @media (max-width: 760px) {
+            .control-table th, .control-table td {
+                padding: 8px 6px;
+                font-size: 12px;
+            }
+            .form-container {
+                padding: 12px;
+            }
+        }
+
+        hr {
+            margin: 20px 0;
+            border: 1px dashed #cbd5e1;
+        }
+        
+        .second-copy {
+            margin-top: 48px;
+            border-top: 3px double #94a3b8;
+            padding-top: 32px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <!-- PRIMERA TABLA: tal cual el diseño original del PDF, incluye encabezados completos y checklist -->
+    <table class="control-table" id="dailyCheckTable">
+        <!-- Encabezado principal con datos de la empresa / documento -->
+        <tr class="brand-header">
+            <td colspan="9" style="background: #0b2b42; color: white; font-weight: bold; font-size: 16px;">Ingredion
+                <span style="float: right;">Control diario de autoelevadores &nbsp; FM-SSO-101</span>
+            </td>
+        </tr>
+        <tr style="background-color: #e2e8f0;">
+            <td colspan="3"><strong>SECTOR QUE ARCHIVA:</strong> HSMA</td>
+            <td colspan="3"><strong>REV:</strong> 01</td>
+            <td colspan="3"><strong>PERIODO DE CONSERVACION:</strong> 2 AÑOS</td>
+        </tr>
+
+        <!-- Fila Fecha / Equipo N° -->
+        <tr>
+            <td colspan="2"><strong>Fecha:</strong> <span style="color:#475569;">___________________</span></td>
+            <td colspan="7"><strong>Equipo N°:</strong> <span style="color:#475569;">________________________</span></td>
+        </tr>
+
+        <!-- Encabezado de componentes: Componentes | OK | NO OK | Observaciones* -->
+        <tr style="background-color: #cbd5e1;">
+            <th style="width: 40%;">Componentes</th>
+            <th style="width: 8%;">OK</th>
+            <th style="width: 8%;">NO OK</th>
+            <th colspan="6" style="width: 44%;">Observaciones*</th>
+        </tr>
+
+        <!-- Lista de componentes según PDF: Líquidos hidráulicos, Frenos, Baliza fija, Luces, Alarma de retroceso, Cubiertas, Cinturón de seguridad, Comandos, Matafuegos -->
+        <tr>
+            <td class="checklist-item">* Líquidos hidráulicos <span class="asterisk-red">(crítico)</span></td>
+            <td style="text-align: center;"><input type="checkbox" disabled></td>
+            <td style="text-align: center;"><input type="checkbox" disabled></td>
+            <td colspan="6"></td>
+        </tr>
+        <tr>
+            <td class="checklist-item">* Frenos <span class="asterisk-red">(crítico)</span></td>
+            <td style="text-align: center;"><input type="checkbox" disabled></td>
+            <td style="text-align: center;"><input type="checkbox" disabled></td>
+            <td colspan="6"></td>
+        </tr>
+        <tr>
+            <td>Baliza fija</td>
+            <td style="text-align: center;"><input type="checkbox" disabled></td>
+            <td style="text-align: center;"><input type="checkbox" disabled></td>
+            <td colspan="6"></td>
+        </tr>
+        <tr>
+            <td>Luces</td>
+            <td style="text-align: center;"><input type="checkbox" disabled></td>
+            <td style="text-align: center;"><input type="checkbox" disabled></td>
+            <td colspan="6"></td>
+        </tr>
+        <tr>
+            <td>Alarma de retroceso</td>
+            <td style="text-align: center;"><input type="checkbox" disabled></td>
+            <td style="text-align: center;"><input type="checkbox" disabled></td>
+            <td colspan="6"></td>
+        </tr>
+        <tr>
+            <td>Cubiertas</td>
+            <td style="text-align: center;"><input type="checkbox" disabled></td>
+            <td style="text-align: center;"><input type="checkbox" disabled></td>
+            <td colspan="6"></td>
+        </tr>
+        <tr>
+            <td>Cinturón de seguridad</td>
+            <td style="text-align: center;"><input type="checkbox" disabled></td>
+            <td style="text-align: center;"><input type="checkbox" disabled></td>
+            <td colspan="6"></td>
+        </tr>
+        <tr>
+            <td>Comandos</td>
+            <td style="text-align: center;"><input type="checkbox" disabled></td>
+            <td style="text-align: center;"><input type="checkbox" disabled></td>
+            <td colspan="6"></td>
+        </tr>
+        <tr>
+            <td>Matafuegos</td>
+            <td style="text-align: center;"><input type="checkbox" disabled></td>
+            <td style="text-align: center;"><input type="checkbox" disabled></td>
+            <td colspan="6"></td>
+        </tr>
+
+        <!-- Recomendaciones efectuadas -->
+        <tr>
+            <td colspan="9" style="background: #f1f5f9; padding: 12px;"><strong>Recomendaciones efectuadas:</strong><br>
+                <span style="border-bottom: 1px solid #aaa; display: inline-block; width: 100%; margin-top: 8px;">&nbsp;</span>
+                <span style="border-bottom: 1px solid #aaa; display: inline-block; width: 100%; margin-top: 6px;">&nbsp;</span>
+            </td>
+        </tr>
+
+        <!-- Fila Operador, Turno, Firma -->
+        <tr class="sign-row">
+            <td colspan="3"><strong>Operador:</strong> _________________________________</td>
+            <td colspan="3"><strong>Turno:</strong> _________________</td>
+            <td colspan="3"><strong>Firma:</strong> _________________</td>
+        </tr>
+
+        <!-- Nota crítica: Puntos críticos -->
+        <tr class="critical-note">
+            <td colspan="9">
+                ⚠️ <strong>(*) Puntos críticos a la hora de evaluar los equipos <a href="index2.html" class="btn-volver">&#8592; Volver al Panel</a></strong><br>
+                <strong>Recuerde:</strong> La falta de cumplimiento de alguno de los 2 puntos críticos indica que el autoelevador debe ser enviado al taller, y este no podrá ser utilizado sin previa intervención del sector de mantenimiento.
+            </td>
+        </tr>
+    <div style="margin-top: 36px; font-size: 11px; color: #6c757d; text-align: center; border-top: 1px solid #dee2e6; padding-top: 16px;">
+        Documento FM-SSO-101 Rev.01 | Período de conservación: 2 años | Archivo: HSMA | Los puntos con asterisco (*) son críticos.
+        <br>Para uso diario en inspección de autoelevadores – Ingredion.
+    </div>
+</div>
+</body>
+</html>

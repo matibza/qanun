@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IngreAr - Carga Celular</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <style>
+        /* Ajustes específicos de usabilidad móvil sobre tus estilos base */
+        @media (max-width: 768px) {
+            main {
+                margin: 0.5rem auto;
+                padding: 0 0.75rem;
+            }
+            .panel-formulario {
+                padding: 1.25rem 1rem;
+            }
+            /* Inputs más altos para que sea fácil tocarlos con el dedo */
+            .form-group input, .form-group select, .radio-group label {
+                padding: 0.85rem !important;
+                font-size: 1.1rem !important;
+            }
+            /* Botones de acción grandes y accesibles */
+            .btn-mobile-contenedor {
+                display: flex;
+                gap: 1rem;
+                margin-top: 2rem;
+            }
+            .btn-mobile {
+                padding: 1rem !important;
+                font-size: 1.1rem !important;
+                text-align: center;
+                flex: 1;
+            }
+        }
+
+        /* Selector de formato estilo botones grandes */
+        .radio-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.3rem;
+        }
+        .radio-item {
+            flex: 1;
+            position: relative;
+        }
+        .radio-item input[type="radio"] {
+            display: none;
+        }
+        .radio-item label {
+            display: block;
+            background-color: #f4f5f7;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            padding: 0.6rem;
+            text-align: center;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .radio-item input[type="radio"]:checked + label {
+            border-color: var(--color-stock);
+            background-color: #e3f2fd;
+            color: #0d47a1;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo">IngreAr</div>
+            <a href="index3.html" class="btn-volver">Volver</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="contenido-layout">
+            
+            <section class="panel-formulario">
+                <h3>Conteo de Stock</h3>
+                <form action="#" method="POST">
+                    
+                    <div class="form-group">
+                        <label for="producto">Producto</label>
+                        <select id="producto" name="producto" required>
+                            <option value="" disabled selected>Seleccionar producto...</option>
+                            <option value="" disabled selected>Seleccionar</option>
+                            <option value="aceite">Aceite</option>
+                            <option value="malto">Globe 19110</option>
+                            <option value="malto">Globe 19150</option>
+                            <option value="malto">Globe 19210</option>
+                            <option value="malto">Farmal MD15</option>
+                            <option value="almidon">Farmal 3400</option>
+                            <option value="aceite">Farmal 3404</option>
+                            <option value="malto">Amidex 19110</option>
+                            <option value="malto">Amidex 19010</option>
+                            <option value="malto">Buffalo 19110</option>
+                            <option value="malto">Buffalo 19110</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Formato</label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="base4" name="formato" value="base4" required>
+                                <label for="base4">Base 4</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="base5" name="formato" value="base5">
+                                <label for="base5">Base 5</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lote">Lote</label>
+                        <input type="tel" id="lote" name="lote" maxlength="8" placeholder="Ej: 240501" required pattern="[0-9]*">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pallets">Cantidad Pallets</label>
+                        <input type="tel" id="pallets" name="pallets" maxlength="2" placeholder="0" required pattern="[0-9]*">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bolsas">Bolsas Sueltas</label>
+                        <input type="tel" id="bolsas" name="bolsas" maxlength="2" placeholder="0" required pattern="[0-9]*">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="calle">Calle / Ubicación</label>
+                        <input type="tel" id="calle" name="calle" maxlength="2" placeholder="0" required pattern="[0-9]*">
+                    </div>
+
+                    <div class="btn-mobile-contenedor">
+                        <button type="submit" class="btn-accion stock btn-mobile">Aceptar</button>
+                        <button type="reset" class="btn-submit btn-mobile">Cancelar</button>
+                    </div>
+
+                </form>
+            </section>
+
+            <section class="panel-tabla">
+                <div class="tabla-cabecera-filtro">
+                    <h3>Cargados Recién</h3>
+                </div>
+                <div class="tabla-contenedor">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Prod.</th>
+                                <th>Lote</th>
+                                <th>PL</th>
+                                <th>BL</th>
+                                <th>Calle</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Malto</td>
+                                <td>260527</td>
+                                <td><b>14</b></td>
+                                <td>05</td>
+                                <td>12</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+</body>
+</html>
