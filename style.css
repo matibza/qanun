@@ -96,7 +96,13 @@ img {
   margin: 20px 0px 0px 0px;
   color: #a1a1a1;
 }
-
+.player__artist2 {
+  font-size: 0.8em;
+  font-weight: 500;
+  opacity: 0.5;
+  margin: 2px 2px 2px 40px;
+  color: #a1a1a1;
+}
 .player__song {
   position: relative;
   width: 100%;
