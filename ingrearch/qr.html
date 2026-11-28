@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Escanear QR</title>
+  <style>
+    body { font-family: sans-serif; padding: 1rem; max-width: 500px; margin: auto; }
+    #reader { width: 100%; max-width: 400px; margin: 1rem 0; }
+    input, button { padding: .6rem; font-size: 1rem; width: 100%; margin: .3rem 0; box-sizing: border-box; }
+    button { cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h2>Escanear código QR</h2>
+
+  <form id="miForm" action="guardar.php" method="post">
+    <label for="codigo">Código QR:</label>
+    <input type="text" id="codigo" name="codigo" required readonly>
+
+    <!-- Contenedor del escáner -->
+    <div id="reader"></div>
+
+    <button type="button" id="btnEscanear">📷 Escanear QR</button>
+    <button type="submit" id="btnEnviar" disabled>💾 Guardar en BD</button>
+  </form>
+
+  <p id="mensaje"></p>
+
+  <script src="https://unpkg.com/html5-qrcode"></script>
+  <script>
+    const inputCodigo = document.getElementById('codigo');
+    const btnEscanear = document.getElementById('btnEscanear');
+    const btnEnviar   = document.getElementById('btnEnviar');
+    const mensaje     = document.getElementById('mensaje');
+    let scanner = null;
+    let escaneando = false;
+
+    btnEscanear.addEventListener('click', async () => {
+      if (escaneando) return;
+
+      if (!scanner) scanner = new Html5Qrcode("reader");
+
+      try {
+        await scanner.start(
+          { facingMode: "environment" },
+          { fps: 10, qrbox: 250 },
+          (decodedText) => {
+            // QR detectado → llenar input
+            inputCodigo.value = decodedText;
+            btnEnviar.disabled = false;
+            mensaje.textContent = "✅ QR detectado. Pulsa 'Guardar en BD'.";
+
+            // Detener cámara
+            scanner.stop().then(() => { scanner.clear(); scanner = null; escaneando = false; });
+          },
+          () => {} // errores de frame ignorados
+        );
+        escaneando = true;
+        btnEscanear.textContent = "⏹ Escaneando...";
+      } catch (err) {
+        alert("No se pudo iniciar la cámara: " + err);
+      }
+    });
+
+    // Envío por fetch (sin recargar página)
+    document.getElementById('miForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+
+      try {
+        const res = await fetch('guardar.php', { method: 'POST', body: formData });
+        const data = await res.json();
+
+        if (data.ok) {
+          mensaje.textContent = "💾 Guardado correctamente en la BD (ID: " + data.id + ")";
+          inputCodigo.value = "";
+          btnEnviar.disabled = true;
+        } else {
+          mensaje.textContent = "❌ Error: " + data.error;
+        }
+      } catch (err) {
+        mensaje.textContent = "❌ Error de red: " + err;
+      }
+    });
+  </script>
+</body>
+</html>
